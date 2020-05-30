@@ -18,16 +18,15 @@ import org.junit.Test;
 import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class WordCountAppTest {
 
-    TopologyTestDriver testDriver;
+    private TopologyTestDriver testDriver;
 
-    StringSerializer stringSerializer = new StringSerializer();
+    private StringSerializer stringSerializer = new StringSerializer();
 
-    ConsumerRecordFactory<String, String> recordFactory =
-             new ConsumerRecordFactory<>(stringSerializer, stringSerializer);
-
+    private ConsumerRecordFactory<String, String> recordFactory = new ConsumerRecordFactory<>(stringSerializer, stringSerializer);
 
     @Before
     public void setUpTopologyTestDriver(){
@@ -47,7 +46,7 @@ public class WordCountAppTest {
         testDriver.close();
     }
 
-    public void pushNewInputRecord(String value){
+    private void pushNewInputRecord(String value){
         testDriver.pipeInput(recordFactory.create("word-count-input", null, value));
     }
 
@@ -57,7 +56,7 @@ public class WordCountAppTest {
         assertEquals(dummy, "Dummy");
     }
 
-    public ProducerRecord<String, Long> readOutput(){
+    private ProducerRecord<String, Long> readOutput(){
         return testDriver.readOutput("word-count-output", new StringDeserializer(), new LongDeserializer());
     }
 
@@ -68,7 +67,7 @@ public class WordCountAppTest {
         OutputVerifier.compareKeyValue(readOutput(), "testing", 1L);
         OutputVerifier.compareKeyValue(readOutput(), "kafka", 1L);
         OutputVerifier.compareKeyValue(readOutput(), "streams", 1L);
-        assertEquals(readOutput(), null);
+        assertNull(readOutput());
 
         String secondExample = "testing Kafka again";
         pushNewInputRecord(secondExample);

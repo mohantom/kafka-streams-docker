@@ -11,7 +11,7 @@ docker-compose -f common.yml up --build -d
 
 docker logs wordcount
 docker logs wordcountinput
-docker logs wordcountoutput
+docker logs wordcountoutput -f
 
 docker-compose -f common.yml down
 ```

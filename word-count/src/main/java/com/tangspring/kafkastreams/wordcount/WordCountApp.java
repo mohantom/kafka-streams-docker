@@ -32,7 +32,7 @@ public class WordCountApp {
     Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
   }
 
-  private Topology createTopology() {
+  Topology createTopology() {
     StreamsBuilder builder = new StreamsBuilder();
     KStream<String, String> textLines = builder.stream(WORD_COUNT_INPUT);
 
