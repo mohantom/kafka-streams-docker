@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>kafkastreams-parent-project</artifactId>
+        <groupId>com.tangspring.kafkastreams</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>infrastructure</artifactId>
+    <properties>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+
+                <executions>
+
+                    <execution>
+                        <id>copy-word-count</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>docker/context/word-count</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/word-count/target
+                                    </directory>
+                                    <includes>
+                                        <include>word-count-jar-with-dependencies.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/word-count/target/classes
+                                    </directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.sh</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+
+                    <execution>
+                        <id>copy-word-count-output</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>docker/context/word-count-output</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/word-count-output/target
+                                    </directory>
+                                    <includes>
+                                        <include>word-count-output-jar-with-dependencies.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/word-count-output/target/classes
+                                    </directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.sh</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-word-count-input</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>docker/context/word-count-input</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/word-count-input/target
+                                    </directory>
+                                    <includes>
+                                        <include>word-count-input-jar-with-dependencies.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/word-count-input/target/classes
+                                    </directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.sh</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

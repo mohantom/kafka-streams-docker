@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - 9092:9092
+    container_name: kafka
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_PORT: 9092
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_CREATE_TOPICS: "word-count-input:2:1:compact,word-count-output:2:1"  # 6 partition, 1 replica
+    depends_on:
+      - zookeeper
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  wordcount:
+    build:
+      context: ./context/word-count
+    image: wordcount
+    container_name: wordcount
+    depends_on:
+      - kafka
+    command: ["kafka:9092"]
+    ports:
+      - "8010:8010"
+      - "18015:5005"
+    environment:
+      - JAVA_OPTS= -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+#      - BOOTSTRAP_SERVERS_CONFIG=localhost:9092
+      - KAFKA_SERVER=kafka:9092
+
+  wordcountoutput:
+    build:
+      context: ./context/word-count-output
+    image: wordcountoutput
+    container_name: wordcountoutput
+    depends_on:
+      - kafka
+    command: ["kafka:9092"]
+    ports:
+      - "8011:8011"
+      - "18016:5005"
+    environment:
+      - JAVA_OPTS= -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+#      - BOOTSTRAP_SERVERS_CONFIG=localhost:9092
+      - KAFKA_SERVER=kafka:9092
+
+  wordcountinput:
+    build:
+      context: ./context/word-count-input
+    image: wordcountinput
+    container_name: wordcountinput
+    depends_on:
+      - kafka
+    command: ["kafka:9092"]
+    ports:
+      - "8012:8011"
+      - "18017:5005"
+    environment:
+      - JAVA_OPTS= -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      #      - BOOTSTRAP_SERVERS_CONFIG=localhost:9092
+      - KAFKA_SERVER=kafka:9092
