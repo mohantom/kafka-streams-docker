@@ -1,0 +1,11 @@
+server:
+  port: 8020
+  servlet:
+    context-path: /loader
+
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
+    group-id: word-count
+    auto-offset-reset: earliest
+    max-poll-records: 10000

@@ -2,6 +2,8 @@
 
 Adapted from Udemy course: Apache Kafka Series - Kafka Streams for Data Processing
 
+[Kafka-streams-examples](https://github.com/confluentinc/kafka-streams-examples)
+
 ```
 cd src
 mvn install
@@ -14,4 +16,5 @@ docker logs wordcountinput
 docker logs wordcountoutput -f
 
 docker-compose -f common.yml down
+docker system prune --volumes
 ```

@@ -21,6 +21,9 @@
 
   <properties>
     <lombok.version>1.18.6</lombok.version>
+    <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+    <jackson.version>2.9.8</jackson.version>
+    <spring-kafka.version>2.2.4.RELEASE</spring-kafka.version>
     <kafka-streams.version>2.0.1</kafka-streams.version>
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.25</slf4j.version>
@@ -34,6 +37,23 @@
         <version>${lombok.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+        <version>${spring-kafka.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
 
       <!--project dependencies -->
       <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
@@ -129,5 +149,22 @@
     </dependency>
 
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <release>11</release>
+          <encoding>UTF-8</encoding>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 
 </project>
