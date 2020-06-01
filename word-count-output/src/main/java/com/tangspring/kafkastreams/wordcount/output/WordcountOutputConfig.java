@@ -1,12 +1,16 @@
 package com.tangspring.kafkastreams.wordcount.output;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHost;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,11 +35,25 @@ public class WordcountOutputConfig {
   @Value("${spring.kafka.max-poll-records}")
   private String maxPollRecords;
 
+  @Value("${spring.es.host}")
+  private String elasticsearchHost;
+
+  @Bean
+  public ObjectMapper objectMapper() {
+    return new ObjectMapper();
+  }
+
   @Bean
   public KafkaConsumer<String, Long> kafkaConsumer() {
     Map<String, Object> props = createKafkaProps(bootstrapServers, groupId, maxPollRecords);
     log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
     return new KafkaConsumer<>(props);
+  }
+
+  @Bean(destroyMethod = "close")
+  public RestHighLevelClient restHighLevelClient() {
+    // TODO: fix connection to ES in docker
+    return new RestHighLevelClient(RestClient.builder(new HttpHost(elasticsearchHost)));
   }
 
   private Map<String, Object> createKafkaProps(String bootstrapServers, String groupId,

@@ -9,3 +9,5 @@ spring:
     group-id: word-count
     auto-offset-reset: earliest
     max-poll-records: 10000
+  es:
+    host: ${ELASTICSEARCH_HOSTS}
