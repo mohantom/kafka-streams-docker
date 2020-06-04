@@ -38,7 +38,7 @@ public class WordcountOutputConfig {
 
   @Bean
   public ObjectMapper objectMapper() {
-    return new ObjectMapper();
+    return JacksonUtil.getObjectMapper();
   }
 
   @Bean

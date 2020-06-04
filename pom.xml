@@ -27,6 +27,7 @@
     <kafka-streams.version>2.0.1</kafka-streams.version>
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.25</slf4j.version>
+    <guava.version>29.0-jre</guava.version>
   </properties>
 
   <dependencyManagement>
@@ -102,6 +103,12 @@
         <version>${slf4j.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+
 
     </dependencies>
 
@@ -146,6 +153,11 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
     </dependency>
 
   </dependencies>
