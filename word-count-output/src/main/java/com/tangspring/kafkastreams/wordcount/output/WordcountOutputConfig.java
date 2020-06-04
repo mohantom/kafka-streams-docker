@@ -15,10 +15,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
 
 @Slf4j
-@EnableKafka
 @ComponentScan("com.tangspring.kafkastreams.wordcount")
 @Configuration
 public class WordcountOutputConfig {
@@ -45,6 +43,7 @@ public class WordcountOutputConfig {
 
   @Bean
   public KafkaConsumer<String, Long> kafkaConsumer() {
+//    Map<String, Object> props = createKafkaProps("localhost:9093", groupId, maxPollRecords); // run in Intellij
     Map<String, Object> props = createKafkaProps(bootstrapServers, groupId, maxPollRecords);
     log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
     return new KafkaConsumer<>(props);
@@ -52,8 +51,8 @@ public class WordcountOutputConfig {
 
   @Bean(destroyMethod = "close")
   public RestHighLevelClient restHighLevelClient() {
-    // TODO: fix connection to ES in docker
-    return new RestHighLevelClient(RestClient.builder(new HttpHost(elasticsearchHost)));
+//    return new RestHighLevelClient(RestClient.builder(HttpHost.create("http://localhost:9200"))); // run in Intellij
+    return new RestHighLevelClient(RestClient.builder(HttpHost.create(elasticsearchHost)));
   }
 
   private Map<String, Object> createKafkaProps(String bootstrapServers, String groupId,

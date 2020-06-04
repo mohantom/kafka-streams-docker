@@ -6,16 +6,17 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
-import java.util.Map;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,26 +44,29 @@ public class WordcountOutputConsumer {
       try {
         ConsumerRecords<String, Long> records = kafkaConsumer.poll(Duration.of(1000, ChronoUnit.MILLIS));
 
+        BulkRequest bulkRequest = new BulkRequest();
         if (records.count() > 0) {
           log.info("Received {} record.", records.count());
           records.forEach(r -> {
             FruitCount fruitCount = FruitCount.builder().id(UUID.randomUUID().toString()).name(r.key()).count(r.value()).build();
 
-            Map<String, Object> fruitCountMap = objectMapper.convertValue(fruitCount, Map.class);
-
-            IndexRequest indexRequest = new IndexRequest("fruits")
-                .id(fruitCount.getId())
-                .source(fruitCountMap);
-
-            log.info("key: {}, value: {}", r.key(), r.value());
-
             try {
-              IndexResponse indexResponse = esClient.index(indexRequest, RequestOptions.DEFAULT);
+              String fruitJson = objectMapper.writeValueAsString(fruitCount);
+
+              IndexRequest indexRequest = new IndexRequest("fruits")
+                  .id(fruitCount.getId())
+                  .source(fruitJson, XContentType.JSON);
+
+              log.info("key: {}, value: {}", r.key(), r.value());
+              bulkRequest.add(indexRequest);
+
             } catch (IOException e) {
-              log.error("Failed to update index for fruit count {}", fruitCount, e);
-              throw new RuntimeException("Failed to update index for fruit count");
+              log.error("Failed to convert fruitCount: {}", fruitCount, e);
             }
           });
+
+          BulkResponse responses = esClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+          log.info("Updated ES7 with {} records.", records.count());
         }
 
       } catch (Exception e) {
