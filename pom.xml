@@ -12,9 +12,11 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>shared</module>
     <module>word-count</module>
     <module>word-count-input</module>
     <module>word-count-output</module>
+    <module>movie-loader</module>
     <module>infrastructure</module>
   </modules>
 
@@ -32,6 +34,12 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>com.tangspring.kafkastreams</groupId>
+        <artifactId>shared</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
@@ -119,6 +127,11 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
     </dependency>
 
     <!--project dependencies -->

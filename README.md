@@ -9,12 +9,12 @@ cd src
 mvn install
 
 cd infrastructure/docker
-docker-compose up --build -d
+docker-compose -f common.yml -f word-count.yml up --build -d
 
 docker logs wordcount
 docker logs wordcountinput
 docker logs wordcountoutput -f
 
-docker-compose down
+docker-compose  -f common.yml -f word-count.yml down
 docker system prune --volumes
 ```
