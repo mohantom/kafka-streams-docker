@@ -178,6 +178,36 @@
                         </configuration>
                     </execution>
 
+
+                    <execution>
+                        <id>copy-movie-es</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>docker/context/movie-es</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/movie-es/target
+                                    </directory>
+                                    <includes>
+                                        <include>movie-es-jar-with-dependencies.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/movie-es/target/classes
+                                    </directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.sh</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

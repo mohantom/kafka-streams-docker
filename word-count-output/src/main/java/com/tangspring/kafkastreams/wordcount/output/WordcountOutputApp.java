@@ -1,6 +1,6 @@
 package com.tangspring.kafkastreams.wordcount.output;
 
-import com.tangspring.kafkastreams.wordcount.output.service.WordcountOutputConsumer;
+import com.tangspring.kafkastreams.wordcount.output.service.WordcountOutputService;
 import java.util.concurrent.Executors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class WordcountOutputApp implements CommandLineRunner {
 
   @Autowired
-  private WordcountOutputConsumer wordcountOutputConsumer;
+  private WordcountOutputService wordcountOutputService;
 
   public static void main(String[] args) {
     SpringApplication.run(WordcountOutputApp.class, args);
@@ -23,7 +23,7 @@ public class WordcountOutputApp implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    Executors.newSingleThreadExecutor().execute(() -> wordcountOutputConsumer.processWordcountOutput());
+    Executors.newSingleThreadExecutor().execute(() -> wordcountOutputService.processWordcountOutput());
     log.info("Wordcount output app started.");
   }
 }

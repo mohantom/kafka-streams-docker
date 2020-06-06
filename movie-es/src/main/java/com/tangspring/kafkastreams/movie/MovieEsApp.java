@@ -10,18 +10,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @SpringBootApplication
 @AllArgsConstructor
-public class MovieLoaderApp implements CommandLineRunner {
+public class MovieEsApp implements CommandLineRunner {
 
-  private MovieLoaderService movieLoaderService;
+  private MovieEsService movieEsService;
 
   public static void main(String[] args) {
-    SpringApplication.run(MovieLoaderApp.class, args);
+    SpringApplication.run(MovieEsApp.class, args);
   }
 
   @Override
   public void run(String... args) {
-    Executors.newSingleThreadExecutor().execute(() -> movieLoaderService.loadMoviesToKafka());
-    log.info("Movie loader app started.");
+    Executors.newSingleThreadExecutor().execute(() -> movieEsService.publishToEs());
+    log.info("Movie elasticsearch app started.");
   }
 }
-

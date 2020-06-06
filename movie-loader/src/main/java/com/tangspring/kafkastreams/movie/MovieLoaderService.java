@@ -9,8 +9,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -22,29 +24,34 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 public class MovieLoaderService {
 
   private static final Pattern PATTERN = Pattern.compile("(\\d{4})");
+  private static final Random random = new Random();
   private static final String MOVIE_TOPIC = "movies";
 
   private KafkaProducer<String, String> kafkaProducer;
-  private ObjectMapper objectMapper;
 
   public void loadMoviesToKafka() {
     log.info("Start sending messages.");
 
-
     try {
       List<String> movieLines = readFromFile("/movies.txt");
 
-      int count = movieLines.stream()
+      List<Movie> movies = movieLines.stream()
           .map(l -> extractMovie(PATTERN, l))
-          .map(this::publishToKafka)
-          .mapToInt(Integer::valueOf)
-          .sum();
+          .collect(Collectors.toList());
 
-      log.info("Published {} out of {} movies to Kafka", count, movieLines.size());
+      int size = movies.size();
+      log.info("Parsed {} movies.", size);
+
+      while(true) {
+        int num = random.nextInt(size);
+        Movie movie = movies.get(num % size);
+
+        publishToKafka(movie);
+        Thread.sleep(100);
+      }
     } catch (Exception e) {
       log.warn("Failed extract movie and send to Kafka.", e);
     }
-
   }
 
   private List<String> readFromFile(String filepath) throws IOException {

@@ -1,4 +1,4 @@
-package com.tangspring.kafkastreams.wordcount.output;
+package com.tangspring.kafkastreams.movie;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
@@ -14,13 +14,11 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@ComponentScan("com.tangspring.kafkastreams.wordcount")
 @Configuration
-public class WordcountOutputConfig {
+public class MovieEsConfig {
 
   @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
@@ -43,6 +41,11 @@ public class WordcountOutputConfig {
   }
 
   @Bean
+  public MovieEsService movieEsService(KafkaConsumer<String, Long> kafkaConsumer, RestHighLevelClient esClient, ObjectMapper objectMapper) {
+    return new MovieEsService(kafkaConsumer, esClient, objectMapper);
+  }
+
+  @Bean
   public KafkaConsumer<String, Long> kafkaConsumer() {
     Map<String, Object> props = createKafkaProps(bootstrapServers, groupId, maxPollRecords);
     log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
@@ -50,7 +53,7 @@ public class WordcountOutputConfig {
   }
 
   @Bean(destroyMethod = "close")
-  public RestHighLevelClient restHighLevelClient() {
+  public RestHighLevelClient esClient() {
     return new RestHighLevelClient(RestClient.builder(HttpHost.create(elasticsearchHost)));
   }
 
@@ -65,5 +68,5 @@ public class WordcountOutputConfig {
     props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecords);
     return props;
   }
-}
 
+}

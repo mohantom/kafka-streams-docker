@@ -36,7 +36,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class WordcountOutputConsumer {
+public class WordcountOutputService {
 
   private static final String FRUITS = "fruits";
 

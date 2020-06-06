@@ -29,8 +29,8 @@ public class MovieLoaderConfig {
   }
 
   @Bean
-  public MovieLoaderService movieLoaderService(KafkaProducer<String, String> kafkaProducer, ObjectMapper objectMapper) {
-    return new MovieLoaderService(kafkaProducer, objectMapper);
+  public MovieLoaderService movieLoaderService(KafkaProducer<String, String> kafkaProducer) {
+    return new MovieLoaderService(kafkaProducer);
   }
 
   private Properties getKafkaProperties() {
