@@ -17,6 +17,7 @@
     <module>word-count-input</module>
     <module>word-count-output</module>
     <module>movie-loader</module>
+    <module>movie-streams</module>
     <module>infrastructure</module>
   </modules>
 
@@ -27,6 +28,7 @@
     <jackson.version>2.9.8</jackson.version>
     <spring-kafka.version>2.2.4.RELEASE</spring-kafka.version>
     <kafka-streams.version>2.0.1</kafka-streams.version>
+    <elasticsearch.version>7.7.0</elasticsearch.version>
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.25</slf4j.version>
     <guava.version>29.0-jre</guava.version>
@@ -89,6 +91,12 @@
         <artifactId>kafka-streams-test-utils</artifactId>
         <version>${kafka-streams.version}</version>
         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${elasticsearch.version}</version>
       </dependency>
 
       <dependency>

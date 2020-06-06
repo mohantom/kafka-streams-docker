@@ -1,0 +1,8 @@
+server:
+  port: 8020
+  servlet:
+    context-path: /moviestreams
+
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9093}

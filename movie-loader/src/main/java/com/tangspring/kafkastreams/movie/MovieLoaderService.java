@@ -1,7 +1,8 @@
 package com.tangspring.kafkastreams.movie;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tangspring.kafkastreams.shared.JacksonUtil;
+import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
+import com.tangspring.kafkastreams.shared.models.Movie;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

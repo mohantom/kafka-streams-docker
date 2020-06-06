@@ -148,6 +148,36 @@
                         </configuration>
                     </execution>
 
+                    <execution>
+                        <id>copy-movie-streams</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>docker/context/movie-streams</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/movie-streams/target
+                                    </directory>
+                                    <includes>
+                                        <include>movie-streams-jar-with-dependencies.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/movie-streams/target/classes
+                                    </directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.sh</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
         </plugins>

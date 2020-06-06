@@ -1,7 +1,7 @@
 package com.tangspring.kafkastreams.movie;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tangspring.kafkastreams.shared.JacksonUtil;
+import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
 import java.util.Properties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;

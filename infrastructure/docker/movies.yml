@@ -19,6 +19,23 @@ services:
     networks:
       - kafkastreams
 
+  moviestreams:
+    build:
+      context: ./context/movie-streams
+    image: moviestreams
+    container_name: moviestreams
+    depends_on:
+      - kafka
+    command: ["kafka:9092"]
+    ports:
+      - "8020:8020"
+      - "18018:5005"
+    environment:
+      - JAVA_OPTS= -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_SERVER=kafka:9092
+    networks:
+      - kafkastreams
 
 networks:
   kafkastreams:

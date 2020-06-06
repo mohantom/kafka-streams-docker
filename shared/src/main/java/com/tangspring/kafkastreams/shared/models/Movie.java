@@ -1,4 +1,4 @@
-package com.tangspring.kafkastreams.movie;
+package com.tangspring.kafkastreams.shared.models;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
