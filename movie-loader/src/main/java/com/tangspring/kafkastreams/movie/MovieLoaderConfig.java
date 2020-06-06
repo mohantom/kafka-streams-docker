@@ -9,11 +9,9 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@ComponentScan("com.tangspring.kafkastreams.movie")
 @Configuration
 public class MovieLoaderConfig {
 
@@ -26,9 +24,13 @@ public class MovieLoaderConfig {
   }
 
   @Bean
-  public KafkaProducer<String, Movie> kafkaProducer() {
-//    Map<String, Object> props = createKafkaProps("localhost:9093", groupId, maxPollRecords); // run in Intellij
+  public KafkaProducer<String, String> kafkaProducer() {
     return new KafkaProducer<>(getKafkaProperties());
+  }
+
+  @Bean
+  public MovieLoaderService movieLoaderService(KafkaProducer<String, String> kafkaProducer, ObjectMapper objectMapper) {
+    return new MovieLoaderService(kafkaProducer, objectMapper);
   }
 
   private Properties getKafkaProperties() {

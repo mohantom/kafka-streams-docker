@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  movieloader:
+    build:
+      context: ./context/movie-loader
+    image: movieloader
+    container_name: movieloader
+    depends_on:
+      - kafka
+    command: ["kafka:9092"]
+    ports:
+      - "8010:8010"
+      - "18017:5005"
+    environment:
+      - JAVA_OPTS= -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_SERVER=kafka:9092
+    networks:
+      - kafkastreams
+
+
+networks:
+  kafkastreams:
+    driver: bridge

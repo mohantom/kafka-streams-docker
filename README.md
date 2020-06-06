@@ -9,7 +9,9 @@ cd src
 mvn install
 
 cd infrastructure/docker
-docker-compose -f common.yml -f word-count.yml up --build -d
+docker-compose -f common.yml up --build -d
+docker-compose -f common.yml -f movies.yml up --build -d
+docker-compose -f common.yml -f words.yml up --build -d
 
 docker logs wordcount
 docker logs wordcountinput

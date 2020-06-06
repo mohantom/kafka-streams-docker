@@ -43,7 +43,6 @@ public class WordcountOutputConfig {
 
   @Bean
   public KafkaConsumer<String, Long> kafkaConsumer() {
-//    Map<String, Object> props = createKafkaProps("localhost:9093", groupId, maxPollRecords); // run in Intellij
     Map<String, Object> props = createKafkaProps(bootstrapServers, groupId, maxPollRecords);
     log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
     return new KafkaConsumer<>(props);
@@ -51,7 +50,6 @@ public class WordcountOutputConfig {
 
   @Bean(destroyMethod = "close")
   public RestHighLevelClient restHighLevelClient() {
-//    return new RestHighLevelClient(RestClient.builder(HttpHost.create("http://localhost:9200"))); // run in Intellij
     return new RestHighLevelClient(RestClient.builder(HttpHost.create(elasticsearchHost)));
   }
 

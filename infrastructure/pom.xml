@@ -117,6 +117,37 @@
                         </configuration>
                     </execution>
 
+
+                    <execution>
+                        <id>copy-movie-loader</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>docker/context/movie-loader</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/movie-loader/target
+                                    </directory>
+                                    <includes>
+                                        <include>movie-loader-jar-with-dependencies.jar</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.basedir}/movie-loader/target/classes
+                                    </directory>
+                                    <includes>
+                                        <include>*.xml</include>
+                                        <include>*.sh</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
         </plugins>

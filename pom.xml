@@ -30,6 +30,10 @@
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.25</slf4j.version>
     <guava.version>29.0-jre</guava.version>
+    <apache.commons.math3.version>3.6</apache.commons.math3.version>
+    <apache.commons.lang3.version>3.8.1</apache.commons.lang3.version>
+    <apache.commons.io.version>2.6</apache.commons.io.version>
+    <apache.commons.text.version>1.8</apache.commons.text.version>
   </properties>
 
   <dependencyManagement>
@@ -87,6 +91,30 @@
         <scope>test</scope>
       </dependency>
 
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${apache.commons.lang3.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-math3</artifactId>
+        <version>${apache.commons.math3.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${apache.commons.io.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>${apache.commons.text.version}</version>
+      </dependency>
+
       <!-- https://mvnrepository.com/artifact/junit/junit -->
       <dependency>
         <groupId>junit</groupId>
@@ -134,11 +162,36 @@
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+
     <!--project dependencies -->
     <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-streams</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-math3</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
     </dependency>
 
     <dependency>

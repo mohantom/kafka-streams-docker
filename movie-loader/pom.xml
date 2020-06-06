@@ -19,7 +19,7 @@
   </dependencies>
 
   <build>
-    <finalName>word-count-output-jar-with-dependencies</finalName>
+    <finalName>movie-loader-jar-with-dependencies</finalName>
 
     <plugins>
       <plugin>

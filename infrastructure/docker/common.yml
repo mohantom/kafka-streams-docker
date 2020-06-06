@@ -13,7 +13,7 @@ services:
     image: wurstmeister/kafka
     ports:
       - 9092:9092
-#      - 9093:9093
+      - 9093:9093
     container_name: kafka
     environment:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
@@ -24,7 +24,7 @@ services:
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-      KAFKA_CREATE_TOPICS: "word-count-input:2:1:compact,word-count-output:2:1"  # 2 partition, 1 replica
+      KAFKA_CREATE_TOPICS: "word-count-input:1:1:compact,word-count-output:1:1,movies:1:1,movies-year:1:1,movies-genre:1:1,movies-rating:1:1"  # 2 partition, 1 replica
     depends_on:
       - zookeeper
     volumes:
