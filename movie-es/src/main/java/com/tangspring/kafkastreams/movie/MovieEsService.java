@@ -1,7 +1,9 @@
 package com.tangspring.kafkastreams.movie;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
+import com.tangspring.kafkastreams.shared.models.Movie;
 import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
 import java.io.IOException;
 import java.time.Duration;
@@ -32,6 +34,8 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @AllArgsConstructor
@@ -40,21 +44,43 @@ public class MovieEsService {
   private static final String MOVIES = "movies";
   private static final String MOVIES_YEAR = "movies-year";
 
-  private KafkaConsumer<String, Long> kafkaConsumer;
+  private RestTemplate restTemplate;
+  private RetryTemplate retryTemplate;
+  private KafkaConsumer<String, Long> moviesYearConsumer;
+  private KafkaConsumer<String, String> moviesConsumer;
   private RestHighLevelClient esClient;
   private ObjectMapper objectMapper;
+  private String elasticsearchHost;
 
   @PostConstruct
   public void init() throws IOException {
-    kafkaConsumer.subscribe(Collections.singletonList(MOVIES_YEAR));
-    createMovieIndex();
+    moviesYearConsumer.subscribe(Collections.singletonList(MOVIES_YEAR));
+    moviesConsumer.subscribe(Collections.singletonList(MOVIES));
+    Map<String, Object> moviesYearMapping = ImmutableMap.of(
+        "properties", ImmutableMap.of(
+            "year", ImmutableMap.of("type", "keyword"),
+            "count", ImmutableMap.of("type", "integer")
+        )
+    );
+    createMovieIndex(MOVIES_YEAR, moviesYearMapping);
+
+    Map<String, Object> moviesMapping = ImmutableMap.of(
+        "properties", ImmutableMap.of(
+            "title", ImmutableMap.of("type", "text"),
+            "cnTitle", ImmutableMap.of("type", "text"),
+            "genre", ImmutableMap.of("type", "text"),
+            "year", ImmutableMap.of("type", "keyword"),
+            "rating", ImmutableMap.of("type", "keyword")
+        )
+    );
+    createMovieIndex(MOVIES, moviesMapping);
   }
 
-  public void publishToEs() {
+  public void publishMoviesToEs() {
 
     while (true) {
       try {
-        ConsumerRecords<String, Long> records = kafkaConsumer.poll(Duration.of(1000, ChronoUnit.MILLIS));
+        ConsumerRecords<String, String> records = moviesConsumer.poll(Duration.of(1000, ChronoUnit.MILLIS));
 
         if (records.count() <= 0) {
           continue;
@@ -62,9 +88,32 @@ public class MovieEsService {
 
         log.info("Received {} record.", records.count());
 
-        BulkRequest bulkRequest = createBulkRequest(records);
+        BulkRequest bulkRequest = createBulkRequestMovies(records);
         BulkResponse responses = esClient.bulk(bulkRequest, RequestOptions.DEFAULT);
-        log.info("Updated ES7 with {} records with status {}", records.count(), responses.status().getStatus());
+        log.info("Updated ES7 movies with {} records with status {}", records.count(), responses.status().getStatus());
+
+      } catch (Exception e) {
+        log.error("Error while processing record.", e);
+        throw new RuntimeException(e.getMessage());
+      }
+    }
+  }
+
+  public void publishMoviesCountToEs() {
+
+    while (true) {
+      try {
+        ConsumerRecords<String, Long> records = moviesYearConsumer.poll(Duration.of(1000, ChronoUnit.MILLIS));
+
+        if (records.count() <= 0) {
+          continue;
+        }
+
+        log.info("Received {} record.", records.count());
+
+        BulkRequest bulkRequest = createBulkRequestMoviesYear(records);
+        BulkResponse responses = esClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+        log.info("Updated ES7 movies-year with {} records with status {}", records.count(), responses.status().getStatus());
 
         getAllMovieCountsByYearFromEs();
 
@@ -75,13 +124,24 @@ public class MovieEsService {
     }
   }
 
-  private BulkRequest createBulkRequest(ConsumerRecords<String, Long> records) {
+  private BulkRequest createBulkRequestMoviesYear(ConsumerRecords<String, Long> records) {
     BulkRequest bulkRequest = new BulkRequest();
     for (ConsumerRecord<String, Long> r : records) {
       String year = r.key();
       MovieCountYear movieCountYear = MovieCountYear.builder().year(year).count(r.value()).build();
       String movieCountYearJson = JacksonUtil.toJson(movieCountYear);
-      IndexRequest indexRequest = new IndexRequest(MOVIES).id(year).source(movieCountYearJson, XContentType.JSON);
+      IndexRequest indexRequest = new IndexRequest(MOVIES_YEAR).id(year).source(movieCountYearJson, XContentType.JSON);
+      log.info("key: {}, value: {}", r.key(), r.value());
+      bulkRequest.add(indexRequest);
+    }
+    return bulkRequest;
+  }
+
+  private BulkRequest createBulkRequestMovies(ConsumerRecords<String, String> records) {
+    BulkRequest bulkRequest = new BulkRequest();
+    for (ConsumerRecord<String, String> r : records) {
+      Movie movie = JacksonUtil.fromJson(r.value(), Movie.class);
+      IndexRequest indexRequest = new IndexRequest(MOVIES).id(movie.getMovieid()).source(r.value(), XContentType.JSON);
       log.info("key: {}, value: {}", r.key(), r.value());
       bulkRequest.add(indexRequest);
     }
@@ -90,7 +150,7 @@ public class MovieEsService {
 
   private void getAllMovieCountsByYearFromEs() throws IOException {
     SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder().query(QueryBuilders.matchAllQuery());
-    SearchRequest searchRequest = new SearchRequest(MOVIES).source(searchSourceBuilder);
+    SearchRequest searchRequest = new SearchRequest(MOVIES_YEAR).source(searchSourceBuilder);
 
     SearchResponse searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);
 
@@ -103,30 +163,28 @@ public class MovieEsService {
   }
 
 
-  private void createMovieIndex() throws IOException {
-    if (isExists()) {
+  private void createMovieIndex(String indexName, Map<String, Object> mapping) throws IOException {
+    if (isExists(indexName)) {
       return;
     }
 
-    CreateIndexRequest request = new CreateIndexRequest(MOVIES);
-    request.settings(Settings.builder()
-        .put("index.number_of_shards", 1)
-        .put("index.number_of_replicas", 2)
-    );
+    CreateIndexRequest request = new CreateIndexRequest(indexName)
+        .mapping(mapping)
+        .settings(Settings.builder()
+            .put("index.number_of_shards", 1)
+            .put("index.number_of_replicas", 2)
+        );
 
-    Map<String, Object> mapping = ImmutableMap.of(
-        "properties", ImmutableMap.of(
-            "year", ImmutableMap.of("type", "keyword"),
-            "count", ImmutableMap.of("type", "integer")
-        )
-    );
-    request.mapping(mapping);
     CreateIndexResponse indexResponse = esClient.indices().create(request, RequestOptions.DEFAULT);
-    log.info("Create movie index response id: " + indexResponse.index());
+    log.info("Create movie index {} response id: {}", indexName, indexResponse.index());
   }
 
-  private boolean isExists() throws IOException {
-    GetIndexRequest getRequest = new GetIndexRequest(MOVIES);
+  private boolean isExists(String indexName) throws IOException {
+    log.info("Waiting for ES7 is ready...");
+    retryTemplate.execute(retryCtx -> restTemplate.getForEntity(elasticsearchHost, JsonNode.class));
+
+    log.info("ES7 is ready. Creating index...");
+    GetIndexRequest getRequest = new GetIndexRequest(indexName);
     return esClient.indices().exists(getRequest, RequestOptions.DEFAULT);
   }
 }

@@ -12,9 +12,14 @@ import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.backoff.FixedBackOffPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Configuration
@@ -41,13 +46,48 @@ public class MovieEsConfig {
   }
 
   @Bean
-  public MovieEsService movieEsService(KafkaConsumer<String, Long> kafkaConsumer, RestHighLevelClient esClient, ObjectMapper objectMapper) {
-    return new MovieEsService(kafkaConsumer, esClient, objectMapper);
+  public RestTemplate restTemplate() {
+    return new RestTemplate();
   }
 
   @Bean
+  public RetryTemplate retryTemplate() {
+    RetryTemplate retryTemplate = new RetryTemplate();
+
+    FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
+    fixedBackOffPolicy.setBackOffPeriod(5000L);
+    retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
+
+    SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
+    retryPolicy.setMaxAttempts(100);
+    retryTemplate.setRetryPolicy(retryPolicy);
+
+    return retryTemplate;
+  }
+
+  @Bean
+  public MovieEsService movieEsService(
+      RestTemplate restTemplate,
+      RetryTemplate retryTemplate,
+      @Qualifier("movies-year") KafkaConsumer<String, Long> moviesYearConsumer,
+      @Qualifier("movies") KafkaConsumer<String, String> moviesConsumer,
+      RestHighLevelClient esClient,
+      ObjectMapper objectMapper) {
+    return new MovieEsService(restTemplate, retryTemplate, moviesYearConsumer, moviesConsumer, esClient, objectMapper, elasticsearchHost);
+  }
+
+  @Bean
+  @Qualifier("movies-year")
   public KafkaConsumer<String, Long> kafkaConsumer() {
-    Map<String, Object> props = createKafkaProps(bootstrapServers, groupId, maxPollRecords);
+    Map<String, Object> props = createKafkaProps(bootstrapServers, "movies-year", maxPollRecords, LongDeserializer.class);
+    log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
+    return new KafkaConsumer<>(props);
+  }
+
+  @Bean
+  @Qualifier("movies")
+  public KafkaConsumer<String, String> moviesConsumer() {
+    Map<String, Object> props = createKafkaProps(bootstrapServers, "movies", maxPollRecords, StringDeserializer.class);
     log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
     return new KafkaConsumer<>(props);
   }
@@ -58,13 +98,13 @@ public class MovieEsConfig {
   }
 
   private Map<String, Object> createKafkaProps(String bootstrapServers, String groupId,
-      String maxPollRecords) {
+      String maxPollRecords, Class valueDeserializer) {
     Map<String, Object> props = new HashMap<>();
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffset);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, valueDeserializer);
     props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecords);
     return props;
   }

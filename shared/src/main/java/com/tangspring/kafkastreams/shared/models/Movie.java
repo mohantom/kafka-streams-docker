@@ -14,8 +14,8 @@ public class Movie {
   private String movieid;
   private String title;
   private String cntitle;
-  private int year;
-  private double rating;
+  private String year;
+  private String rating;
   private String genre;
   private int runtime;    // min
   private String country;

@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.retry.annotation.EnableRetry;
 
 @Slf4j
+@EnableRetry
 @SpringBootApplication
 @AllArgsConstructor
 public class MovieEsApp implements CommandLineRunner {
@@ -20,7 +22,8 @@ public class MovieEsApp implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    Executors.newSingleThreadExecutor().execute(() -> movieEsService.publishToEs());
+    Executors.newSingleThreadExecutor().execute(() -> movieEsService.publishMoviesCountToEs());
+    Executors.newSingleThreadExecutor().execute(() -> movieEsService.publishMoviesToEs());
     log.info("Movie elasticsearch app started.");
   }
 }
