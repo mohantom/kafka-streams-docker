@@ -84,11 +84,29 @@ services:
     networks:
       - kafkastreams
 
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - 'mongodb_data:/data/mongodb'
+    networks:
+      - kafkastreams
+
+
 volumes:
   data01:
     driver: local
   data02:
     driver: local
+  mongodb_data:
+    driver: local
+
 
 networks:
   kafkastreams:

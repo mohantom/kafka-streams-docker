@@ -78,7 +78,7 @@ public class MovieEsConfig {
 
   @Bean
   @Qualifier("movies-year")
-  public KafkaConsumer<String, Long> kafkaConsumer() {
+  public KafkaConsumer<String, Long> moviesYearConsumer() {
     Map<String, Object> props = createKafkaProps(bootstrapServers, "movies-year", maxPollRecords, LongDeserializer.class);
     log.info("Created Kafka consumer at {}:{}:{}", bootstrapServers, groupId, maxPollRecords);
     return new KafkaConsumer<>(props);

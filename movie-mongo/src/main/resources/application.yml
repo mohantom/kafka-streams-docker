@@ -1,0 +1,15 @@
+server:
+  port: 8040
+  servlet:
+    context-path: /mongo
+
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9093}
+    group-id: moviemongo
+    auto-offset-reset: earliest
+    max-poll-records: 10000
+
+  mongo:
+    host: ${SPRING_MONGO_HOST:localhost}
+    port: ${SPRING_MONGO_PORT:27017}

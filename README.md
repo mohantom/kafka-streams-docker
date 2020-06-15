@@ -4,6 +4,13 @@ Adapted from Udemy course: Apache Kafka Series - Kafka Streams for Data Processi
 
 [Kafka-streams-examples](https://github.com/confluentinc/kafka-streams-examples)
 
+- Kafka
+- Kafka Streams
+- Elasticsearch
+- MongoDB
+- Spring Boot
+- Spring Retry
+
 ```
 cd src
 mvn install
@@ -19,4 +26,8 @@ docker logs wordcountoutput -f
 
 docker-compose  -f common.yml -f word-count.yml down
 docker system prune --volumes
+
 ```
+
+try this in browser:
+http://localhost:8040/mongo/movie/query?title=Terminator

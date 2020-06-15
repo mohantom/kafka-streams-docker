@@ -44,13 +44,13 @@ public class MovieEsService {
   private static final String MOVIES = "movies";
   private static final String MOVIES_YEAR = "movies-year";
 
-  private RestTemplate restTemplate;
-  private RetryTemplate retryTemplate;
-  private KafkaConsumer<String, Long> moviesYearConsumer;
-  private KafkaConsumer<String, String> moviesConsumer;
-  private RestHighLevelClient esClient;
-  private ObjectMapper objectMapper;
-  private String elasticsearchHost;
+  private final RestTemplate restTemplate;
+  private final RetryTemplate retryTemplate;
+  private final KafkaConsumer<String, Long> moviesYearConsumer;
+  private final KafkaConsumer<String, String> moviesConsumer;
+  private final RestHighLevelClient esClient;
+  private final ObjectMapper objectMapper;
+  private final String elasticsearchHost;
 
   @PostConstruct
   public void init() throws IOException {

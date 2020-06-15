@@ -53,6 +53,25 @@ services:
     networks:
       - kafkastreams
 
+  moviemongo:
+    build:
+      context: ./context/movie-mongo
+    image: moviemongo
+    container_name: moviemongo
+    depends_on:
+      - kafka
+    command: ["kafka:9092"]
+    ports:
+      - "8040:8040"
+      - "18020:5005"
+    environment:
+      - JAVA_OPTS= -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_MONGO_HOST=mongo
+      - SPRING_MONGO_PORT=27017
+    networks:
+      - kafkastreams
+
 networks:
   kafkastreams:
     driver: bridge
