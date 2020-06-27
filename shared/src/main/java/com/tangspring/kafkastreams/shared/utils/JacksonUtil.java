@@ -83,8 +83,8 @@ public class JacksonUtil {
     return csvMapper.readerFor(clazz).with(getSchemaWithHeader(clazz));
   }
 
-  public <T> ObjectWriter getCsvWriter(Class<T> clazz) {
-    CsvSchema schema = getSchemaWithHeader(clazz);
+  public <T> ObjectWriter getCsvWriter(Class<T> clazz, boolean append) {
+    CsvSchema schema = append ? getSchema(clazz) : getSchemaWithHeader(clazz);
     return csvMapper.writer(schema);
   }
 

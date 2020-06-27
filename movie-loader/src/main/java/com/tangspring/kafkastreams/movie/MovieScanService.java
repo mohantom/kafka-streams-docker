@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
@@ -34,41 +35,57 @@ public class MovieScanService {
   private static final Pattern PATTERN = Pattern.compile("(\\d{4})");
   private static final Pattern PATTERN_RATING = Pattern.compile("(\\d\\.\\d)");
   private static final String DEFAULT_YEAR_RATING = "0000";
-  private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey=80bb7f52&t={title}&y={year}";
+//  private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey=80bb7f52&t={title}&y={year}";
+//  private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey=f98d8087&t={title}&y={year}";
+//  private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey=e76a5722&t={title}&y={year}";
+  private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey=c8b0a93e&t={title}&y={year}";
   private static final String MOVIE_ENRICHED_FILENAME = "movies_enriched.csv";
+  private static final String MOVIE_UNFOOUND_FILENAME = "movies_unfound.csv";
 
   private final RestTemplate restTemplate;
   private final String outputFolder;
 
-  public List<Movie> scanMovies() {
-//    List<String> movieFiles = scanFolder("Y:\\Action 动作战争");
-
+  public List<Movie> scanMovies(boolean append) {
     List<String> movieLines = readFromFile("/movies.txt");
 
-    Set<String> moviesTitlesHavingImdbId = loadEnrichedMovies().stream()
+    Set<String> moviesTitlesHavingImdbId = loadMoviesFromCsv(null).stream()
         .filter(this::hasImdbId)
         .map(Movie::getTitle)
         .collect(Collectors.toSet());
+    log.info("Found {} movies already enriched.", moviesTitlesHavingImdbId.size());
 
-    List<Movie> movies = movieLines.stream()
+    Set<String> moviesTitlesUnfound = loadMoviesFromCsv(Paths.get(outputFolder, MOVIE_UNFOOUND_FILENAME).toString()).stream()
+        .map(Movie::getTitle)
+        .collect(Collectors.toSet());
+    log.info("There are {} movies unfound.", moviesTitlesUnfound.size());
+
+    List<Movie> allMovies = movieLines.stream()
         .map(this::extractMovie)
         .filter(Objects::nonNull)
-        .filter(m -> !moviesTitlesHavingImdbId.contains(m.getTitle()))
-        .limit(500)
-        .map(this::enrichMovie)
-        .filter(this::hasImdbId)
         .collect(Collectors.toList());
+    log.info("Total {} movies.", allMovies.size());
 
-    int size = movies.size();
-    log.info("Parsed {} movies.", size);
+    List<Movie> moviesTobeEnriched = allMovies.stream()
+        .filter(m -> !moviesTitlesHavingImdbId.contains(m.getTitle()))  // already enriched
+        .filter(m -> !moviesTitlesUnfound.contains(m.getTitle()))       // already checked it does not exist on OMDB
+        .filter(m -> StringUtils.isNoneBlank(m.getTitle(), m.getYear()))
+        .collect(Collectors.toList());
+    log.info("Found {} movies to be enriched.", moviesTobeEnriched.size());
 
-    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), movies);
+    Pair<List<Movie>, List<Movie>> enrichedAndUnfoundMovies = enrichMovies(moviesTobeEnriched);
 
-    return movies.stream().limit(10).collect(Collectors.toList());
+
+    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), enrichedAndUnfoundMovies.getLeft(), append);
+    createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight(), append);
+
+    return enrichedAndUnfoundMovies.getLeft().stream().limit(10).collect(Collectors.toList());
   }
 
-  public List<Movie> loadEnrichedMovies() {
-    return JacksonUtil.readCsvFile(Paths.get(outputFolder, MOVIE_ENRICHED_FILENAME).toString(), Movie.class);
+  private List<Movie> loadMoviesFromCsv(String filepath) {
+    if (filepath == null) {
+      filepath = Paths.get(outputFolder, MOVIE_ENRICHED_FILENAME).toString();
+    }
+    return JacksonUtil.readCsvFile(filepath, Movie.class);
   }
 
   private boolean hasImdbId(Movie m) {
@@ -105,11 +122,24 @@ public class MovieScanService {
 
   private Movie extractMovie(String l) {
     Matcher matcher = PATTERN.matcher(l);
-    String year = matcher.find() ? matcher.group(0) : DEFAULT_YEAR_RATING;
+    String year = matcher.find(4) ? matcher.group(0) : DEFAULT_YEAR_RATING;
 
-    String title = StringUtils.trim(StringUtils.substringBefore(l, year));
-    String enTitle = StringUtils.trim(title.replaceAll("[^\\x00-\\x7F]", "")); // replace non-latin symbols
+    String title = StringUtils.trim(StringUtils.substringBeforeLast(l, year));
+
+    String enTitle = title.matches(".*[^\\x00-\\x7F].*") ? StringUtils.trim(StringUtils.substringBeforeLast(title, " ")) : title;
     String cnTitle = StringUtils.trim(StringUtils.substringAfter(title, enTitle));
+
+    if (enTitle.matches(".*\\s\\d\\w?") || enTitle.matches(".*\\s\\d\\.\\d")) {  // Terminator 2, Terminator 3b, Terminator 7.5
+      enTitle = StringUtils.trim(StringUtils.substringBeforeLast(enTitle, " "));
+    }
+
+    if (enTitle.length() <= 1) { // cn movies
+      enTitle = null;
+    }
+
+    if (StringUtils.isAnyBlank(enTitle, year)) {
+      log.warn("Missing title or year: {}", l);
+    }
 
     Matcher matcherRating = PATTERN_RATING.matcher(l);
     String rating = matcherRating.find() ? matcherRating.group(0) : DEFAULT_YEAR_RATING;
@@ -117,8 +147,7 @@ public class MovieScanService {
     String afterRating = StringUtils.trim(StringUtils.substringAfter(l, rating));
     String genre = StringUtils.substringBefore(afterRating, " ");
 
-    return StringUtils.isAnyBlank(enTitle, year, rating, genre) || DEFAULT_YEAR_RATING.equals(year) || DEFAULT_YEAR_RATING.equals(rating)? null :
-        Movie.builder()
+    return  Movie.builder()
             .title(enTitle)
             .cntitle(cnTitle)
             .genre(genre)
@@ -127,37 +156,54 @@ public class MovieScanService {
             .build();
   }
 
-  private Movie enrichMovie(Movie m) {
-    Map<String, String> uriVars = ImmutableMap.of(
-        "title", m.getTitle(),
-        "year", m.getYear()
-    );
-    OmdbMovie omdbMovie = restTemplate.getForObject(omdbBaseUrl, OmdbMovie.class, uriVars);
+  private Pair<List<Movie>, List<Movie>> enrichMovies(List<Movie> movies) {
+    List<Movie> enrichedMovies = new ArrayList<>();
+    List<Movie> unfoundMovies = new ArrayList<>();
+    for (Movie m : movies) {
+      Map<String, String> uriVars = ImmutableMap.of("title", m.getTitle(), "year", m.getYear());
+      try {
+        OmdbMovie omdbMovie = restTemplate.getForObject(omdbBaseUrl, OmdbMovie.class, uriVars);
 
-    return m.toBuilder()
-        .runtime(getRuntime(omdbMovie))
-        .rating(omdbMovie.getImdbRating())
-        .genre(omdbMovie.getGenre())
-        .actors(omdbMovie.getActors())
-        .plot(omdbMovie.getPlot())
-        .poster(omdbMovie.getPoster())
-        .country(omdbMovie.getCountry())
-        .imdbid(omdbMovie.getImdbID())
-        .build();
+        if (omdbMovie == null || omdbMovie.getTitle() == null) {
+          unfoundMovies.add(m);
+          continue;
+        }
+
+        Movie enrichedMovie = m.toBuilder()
+            .runtime(getRuntime(omdbMovie))
+            .rating(omdbMovie.getImdbRating())
+            .genre(omdbMovie.getGenre())
+            .actors(omdbMovie.getActors())
+            .plot(omdbMovie.getPlot())
+            .poster(omdbMovie.getPoster())
+            .country(omdbMovie.getCountry())
+            .imdbid(omdbMovie.getImdbID())
+            .build();
+
+        enrichedMovies.add(enrichedMovie);
+
+      } catch (Exception e) {
+        log.error("Problem from OMDB api.", e); // Request limit reached!
+        break;
+      }
+    }
+
+    return Pair.of(enrichedMovies, unfoundMovies);
+
   }
 
   private int getRuntime(OmdbMovie omdbMovie) {
     try {
       return Integer.parseInt(StringUtils.substringBefore(omdbMovie.getRuntime(), " min"));
     } catch (Exception e) {
-      log.warn("No runtime available: {}", omdbMovie.getRuntime());
+      log.warn("No runtime available for {}: {}", omdbMovie.getTitle(), omdbMovie.getRuntime());
       return 0;
     }
   }
 
-  private void createCSVFile(File csvFile, List<Movie> movies) {
-    try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(csvFile, true))) {
-      SequenceWriter writer = JacksonUtil.getCsvWriter(Movie.class).writeValues(fos);
+  private void createCSVFile(File csvFile, List<Movie> movies, boolean append) {
+    try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(csvFile, append))) {
+      SequenceWriter writer = JacksonUtil.getCsvWriter(Movie.class, append).writeValues(fos);
       writer.writeAll(movies);
     } catch (IOException ie) {
       log.error("Failed to write movies to csv file");

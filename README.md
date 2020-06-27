@@ -1,4 +1,5 @@
-# Kafka Streams on Docker
+Kafka Streams on Docker
+========================
 
 Adapted from Udemy course: Apache Kafka Series - Kafka Streams for Data Processing
 
@@ -10,6 +11,7 @@ Adapted from Udemy course: Apache Kafka Series - Kafka Streams for Data Processi
 - MongoDB
 - Spring Boot
 - Spring Retry
+- React
 
 ```
 cd src
@@ -29,8 +31,13 @@ docker system prune --volumes
 
 ```
 
+## Mongo
 try this in browser:
 http://localhost:8040/mongo/movie/query?title=Terminator
+
+Or query with [Mongo Compass](https://www.mongodb.com/products/compass)
+connection: mongodb://root:example@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false
+
 
 
 ## TODO

@@ -22,7 +22,10 @@ public class MovieLoaderService {
     log.info("Start sending messages.");
 
     try {
-      List<Movie> movies = movieScanService.loadEnrichedMovies();
+//      List<Movie> movies = movieScanService.loadMoviesFromCsv(null);
+
+      List<Movie> movies = JacksonUtil.readFromInputStream(this.getClass().getResourceAsStream("/movies_enriched.csv"), Movie.class);
+
       movies.forEach(this::publishToKafka);
       log.info("Loaded {} movies to Kafka", movies.size());
     } catch (Exception e) {
