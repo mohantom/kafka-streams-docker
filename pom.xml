@@ -19,6 +19,7 @@
     <module>movie-streams</module>
     <module>movie-es</module>
     <module>movie-mongo</module>
+    <module>movie-ui</module>
     <module>infrastructure</module>
   </modules>
 

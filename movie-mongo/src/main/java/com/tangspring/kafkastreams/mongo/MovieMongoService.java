@@ -16,6 +16,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -64,6 +68,13 @@ public class MovieMongoService {
   public List<Movie> findMoviesByTitle(String title) {
     Query query = new Query();
     query.addCriteria(Criteria.where("title").regex(String.format(".*%s.*", title)));
+    return mongoTemplate.find(query, Movie.class);
+  }
+
+  public List<Movie> findAllMovies(int page, int size, String sortField, Direction direction) {
+    Query query = new Query();
+    Pageable pageable = PageRequest.of(page, size);
+    query.with(pageable).with(Sort.by(direction, sortField));
     return mongoTemplate.find(query, Movie.class);
   }
 }

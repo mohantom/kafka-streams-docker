@@ -1,5 +1,7 @@
 package com.tangspring.kafkastreams.mongo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 @Slf4j
@@ -28,6 +31,11 @@ public class MovieMongoConfig {
   @Value("${spring.kafka.max-poll-records}")
   private String maxPollRecords;
 
+  @Bean
+  @Primary
+  public ObjectMapper objectMapper() {
+    return JacksonUtil.getObjectMapper();
+  }
 
   @Bean
   @Qualifier("movies")
