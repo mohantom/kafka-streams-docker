@@ -97,6 +97,12 @@
         <version>${jackson.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-csv</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
       <!--project dependencies -->
       <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
       <dependency>
@@ -215,6 +221,11 @@
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-csv</artifactId>
     </dependency>
 
     <!--project dependencies -->

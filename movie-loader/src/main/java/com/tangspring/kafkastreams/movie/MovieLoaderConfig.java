@@ -10,6 +10,8 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Configuration
@@ -18,9 +20,18 @@ public class MovieLoaderConfig {
   @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
 
+  @Value("${output.folder}")
+  private String outputFolder;
+
   @Bean
+  @Primary
   public ObjectMapper objectMapper() {
     return JacksonUtil.getObjectMapper();
+  }
+
+  @Bean
+  public RestTemplate restTemplate() {
+    return new RestTemplate();
   }
 
   @Bean
@@ -29,9 +40,15 @@ public class MovieLoaderConfig {
   }
 
   @Bean
-  public MovieLoaderService movieLoaderService(KafkaProducer<String, String> kafkaProducer) {
-    return new MovieLoaderService(kafkaProducer);
+  public MovieLoaderService movieLoaderService(MovieScanService movieScanService, KafkaProducer<String, String> kafkaProducer) {
+    return new MovieLoaderService(movieScanService, kafkaProducer);
   }
+
+  @Bean
+  public MovieScanService movieScanService(RestTemplate restTemplate) {
+    return new MovieScanService(restTemplate, outputFolder);
+  }
+
 
   private Properties getKafkaProperties() {
     Properties props = new Properties();

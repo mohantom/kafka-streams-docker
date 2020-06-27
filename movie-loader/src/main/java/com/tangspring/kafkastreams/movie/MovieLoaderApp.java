@@ -20,7 +20,7 @@ public class MovieLoaderApp implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    Executors.newSingleThreadExecutor().execute(() -> movieLoaderService.loadMoviesToKafka());
+//    Executors.newSingleThreadExecutor().execute(() -> movieLoaderService.loadMoviesToKafka());
     log.info("Movie loader app started.");
   }
 }

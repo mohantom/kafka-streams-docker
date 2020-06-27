@@ -31,3 +31,10 @@ docker system prune --volumes
 
 try this in browser:
 http://localhost:8040/mongo/movie/query?title=Terminator
+
+
+## TODO
+0. python to get a new movies.txt
+1. endpoint: rescan movies -> enriched_movies.csv from omdbapi with rating, poster, actor, director
+2. endpoint: reload movies to ES7, mongo
+3. React app to display movies
