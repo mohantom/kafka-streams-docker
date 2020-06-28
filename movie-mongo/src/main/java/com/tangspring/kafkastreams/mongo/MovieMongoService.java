@@ -67,7 +67,7 @@ public class MovieMongoService {
 
   public List<Movie> findMoviesByTitle(String title) {
     Query query = new Query();
-    query.addCriteria(Criteria.where("title").regex(String.format(".*%s.*", title)));
+    query.addCriteria(Criteria.where("title").regex(String.format(".*%s.*", title), "i")); // case-insensitive
     return mongoTemplate.find(query, Movie.class);
   }
 

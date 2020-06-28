@@ -21,25 +21,25 @@ const gridDefs = [
   { headerName: "Title", field: "title", sortable: true, filter: true },
   {
     headerName: "Rate",
-    field: "vote_average",
+    field: "rating",
     sortable: true,
     filter: true
   },
   {
-    headerName: "Popularity",
-    field: "popularity",
+    headerName: "Genre",
+    field: "genre",
     sortable: true,
     filter: true
   },
   {
-    headerName: "Release Date",
-    field: "release_date",
+    headerName: "Year",
+    field: "year",
     sortable: true,
     filter: true
   },
   {
-    headerName: "Language",
-    field: "original_language",
+    headerName: "Country",
+    field: "country",
     sortable: true,
     filter: true
   }
@@ -57,7 +57,7 @@ const createCountByRatePieOptions = function(filterMovies) {
       text: "Movie Count by Rate"
     },
     subtitle: {
-      text: "Source: TMDB.com"
+      text: "Source: OMDB.com"
     },
     tooltip: {
       pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
@@ -68,7 +68,7 @@ const createCountByRatePieOptions = function(filterMovies) {
         point: {
           events: {
             click: function() {
-              const filter = { vote_average: +this.name };
+              const filter = { rating: +this.name };
               filterMovies(filter);
             }
           }
@@ -147,12 +147,10 @@ const MovieStats = props => {
   const [movieStats, setMovieStats] = useState({
     moviesToprated: [],
     gridColumnDefs: [],
-
-    filters: { release_year: undefined, vote_average: undefined },
-    movieCountByYear: [],
-
     countByYearBarOptions: {},
-    countByYearPieOptions: {}
+    countByYearPieOptions: {},
+
+    filters: { year: undefined, rating: undefined },
   });
 
   const {
@@ -165,23 +163,18 @@ const MovieStats = props => {
 
   useEffect(() => {
     getMoviesTopRated().then(movies => {
-      //   moviesToprated = _.chain(movies)
-      //     // .orderBy(["release_date"], ["desc"])
-      //     // .slice(0, 10)
-      //     .value();
-
       const movieCountByRate = _.chain(movies)
-        .countBy("vote_average")
-        .map((count, rate) => {
+        .countBy("rating")
+        .map((count, rating) => {
           return {
-            name: rate,
+            name: rating,
             y: count
           };
         })
         .value();
 
       const movieCountByYear2 = _.chain(movies)
-        .countBy("release_year")
+        .countBy("year")
         .value();
 
       const pieOptions = createCountByRatePieOptions(filterMovies);
@@ -192,12 +185,14 @@ const MovieStats = props => {
       barOptions.series[0].data = _.values(movieCountByYear2);
 
       setMovieStats({
-        ...movieStats,
         moviesToprated: movies,
         gridColumnDefs: gridDefs,
+        filters: { year: undefined, rating: undefined },
         countByYearPieOptions: pieOptions,
         countByYearBarOptions: barOptions
       });
+
+      console.log("finished loading top 250 rated movies.");
     });
   }, []);
 
@@ -221,7 +216,7 @@ const MovieStats = props => {
     const newFilters = { ...filters, ...filter };
 
     const filteredMovies = _.filter(
-      moviesToprated,
+      movieStats.moviesToprated,
       _.pickBy(filters, v => _.isString(v) || _.isNumber(v))
     );
 
@@ -256,7 +251,7 @@ const MovieStats = props => {
           </div>
 
           <h2 className="title is-primary">
-            Top 100 Rated Movies
+            Top 250 Rated Movies
             <button className="button is-primary" onClick={clearFilters}>
               Clear Filters
             </button>

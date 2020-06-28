@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import _ from "lodash";
-import axios, { movieUrls } from "../../axios";
+import axios, { mongoAxios, movieUrls } from "../../axios";
 import { MovieContext } from "../context";
 import MovieReducer from "./movieReducer";
 import {
@@ -31,7 +31,7 @@ const MovieState = props => {
     if (page < 0) {
       return;
     }
-    const res = await axios.get(movieUrls.popular(page || 0));
+    const res = await mongoAxios.get(movieUrls.popular(page || 0));
     console.log("got movies: ", res.data);
     dispatch({
       type: GET_MOVIES,
@@ -45,12 +45,12 @@ const MovieState = props => {
       return;
     }
 
-    const res = await axios.get(movieUrls.search(searchText));
+    const res = await mongoAxios.get(movieUrls.search(searchText));
     console.log("got movies from search: ", res.data);
     dispatch({
       type: SET_MOVIES,
-      payload: res.data.results,
-      currentPage: res.data.page
+      payload: res.data,
+      currentPage: 0
     });
   };
 
@@ -116,20 +116,8 @@ const MovieState = props => {
   };
 
   const getMoviesTopRated = async () => {
-    const movieAxios = [1, 2, 3, 4, 5].map(num =>
-      axios.get(movieUrls.toprated(num))
-    );
-    const [r1, r2, r3, r4, r5] = await Promise.all(movieAxios);
-
-    const moviesToprated = _.chain([r1, r2, r3, r4, r5])
-      .flatMap("data.results")
-      .map(movie => {
-        movie.release_year = movie.release_date.substr(0, 4);
-        return movie;
-      })
-      .value();
-
-    return moviesToprated;
+    const response = await mongoAxios.get(movieUrls.toprated(0));
+    return response.data;
   };
 
   return (

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseMovieUrl = `https://api.themoviedb.org/3/`;
-const baseMovieUrl = `http://localhost:8040/mongo/`;
+const baseMovieUrl = `https://api.themoviedb.org/3/`;
+const mongoMovieUrl = `http://localhost:8040/mongo/`;
 const apiKey = `&api_key=db92a48cc98dd05417a4d990dd1e47aa`;
 
 const myAxios = axios.create({
@@ -10,13 +10,16 @@ const myAxios = axios.create({
   // headers: {'X-Custom-Header': 'foobar'}
 });
 
+const mongoAxios = axios.create({
+  baseURL: mongoMovieUrl,
+  timeout: 1000
+});
+
 myAxios.interceptors.request.use(
   config => {
     // perform a task before the request is sent
     console.log("Request was sent");
-    if (config.url.includes('themoviedb')) {
-      config.url += apiKey;
-    }
+    config.url += apiKey;
 
     return config;
   },
@@ -27,16 +30,17 @@ myAxios.interceptors.request.use(
 );
 
 const movieUrls = {
-  // popular: page => `movie/popular?page=${page}`,
+  // mongo app
   popular: page => `movie/all?size=20&sortField=year&direction=DESC&page=${page}`,
-  search: query => `search/movie?query=${query}`,
-  toprated: page => `movie/top_rated?page=${page}`,
-  findMovieId: imdbid => `https://api.themoviedb.org/3/find/${imdbid}?external_source=imdb_id`,
-  details: movieid =>
-    `https://api.themoviedb.org/3/movie/${movieid}?append_to_response=videos`,
-  review: movieid => `https://api.themoviedb.org/3/movie/${movieid}/reviews?`,
+  search: title => `movie/query?title=${title}`,
+  toprated: page => `movie/all?size=250&sortField=rating&direction=DESC&page=${page}`,
+
+  // tmdb
+  findMovieId: imdbid => `/find/${imdbid}?external_source=imdb_id`,
+  details: movieid => `/movie/${movieid}?append_to_response=videos`,
+  review: movieid => `/movie/${movieid}/reviews?`,
   imdbLink: imdbid => `https://www.imdb.com/title/${imdbid}`
 };
 
-export { movieUrls };
+export { mongoAxios, movieUrls };
 export default myAxios;
