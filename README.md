@@ -42,6 +42,9 @@ connection: mongodb://root:example@localhost:27017/?authSource=admin&readPrefere
 ### to load movies to mongo/es7
 http://localhost:8040/mongo/movie/load
 
+### go to UI
+http://localhost:3000/home
+
 
 ## TODO
 - endpoint to drop es7 index and mongo collection

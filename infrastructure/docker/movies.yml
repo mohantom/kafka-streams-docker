@@ -72,6 +72,16 @@ services:
     networks:
       - kafkastreams
 
+  movieui:
+    build:
+      context: ./context/movie-ui
+    image: movieui
+    container_name: movieui
+    ports:
+      - "3000:3000"
+    networks:
+      - kafkastreams
+
 networks:
   kafkastreams:
     driver: bridge
