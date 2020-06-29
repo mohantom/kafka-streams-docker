@@ -253,7 +253,7 @@
                                         ${project.parent.basedir}/movie-ui/build
                                     </directory>
                                     <includes>
-                                        <include>*.*</include>
+                                        <include>**/*</include>
                                     </includes>
                                 </resource>
                             </resources>

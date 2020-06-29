@@ -49,13 +49,13 @@ http://localhost:3000/home
 ## TODO
 - endpoint to drop es7 index and mongo collection
 - React app to display movies
-    - maven build ui, copy build to docker
-    - query stats
-    - infinite scroll
-    - cn movies?
-    - filters: genre, years, rating, director?
+    - [x] maven build ui, copy build to docker
+    - [x] query stats
+    - [x] query stats from es7
+    - [ ] infinite scroll
+    - [ ] filters: genre, years, rating, director?
+    - [ ] fix movies with rating N/A from code
+    - [ ] fix movie stats filter
 - deploy to aws
 - play from nas
 
-fix movies with rating N/A from code
-fix movie stats filter

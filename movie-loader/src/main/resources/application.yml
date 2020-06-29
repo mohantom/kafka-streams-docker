@@ -6,3 +6,5 @@ server:
 spring:
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9093}
+
+output.folder: /var
