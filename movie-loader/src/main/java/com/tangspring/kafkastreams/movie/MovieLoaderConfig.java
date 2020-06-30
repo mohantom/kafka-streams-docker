@@ -41,7 +41,7 @@ public class MovieLoaderConfig {
 
   @Bean
   public MovieLoaderService movieLoaderService(MovieScanService movieScanService, KafkaProducer<String, String> kafkaProducer) {
-    return new MovieLoaderService(movieScanService, kafkaProducer);
+    return new MovieLoaderService(movieScanService, kafkaProducer, outputFolder);
   }
 
   @Bean

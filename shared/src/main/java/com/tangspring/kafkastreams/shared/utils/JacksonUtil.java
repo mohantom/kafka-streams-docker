@@ -11,6 +11,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.ImmutableList;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,6 +66,10 @@ public class JacksonUtil {
   }
 
   public <T> List<T> readCsvFile(String filepath, Class<T> clazz) {
+    if (!(new File(filepath)).exists()) {
+      return ImmutableList.of();
+    }
+
     try (InputStream is = new FileInputStream(filepath)) {
       return readFromInputStream(is, clazz);
     } catch (Exception e) {

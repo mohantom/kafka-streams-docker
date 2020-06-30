@@ -14,10 +14,10 @@ public class Movie {
   private String movieid;
   private String title;
   private String cntitle;
-  private String year;
-  private String rating;
+  private Integer year;
+  private Float rating;
   private String genre;
-  private int runtime;    // min
+  private Integer runtime;    // min
   private String country;
   private String source;
   private String filetype;
@@ -25,6 +25,8 @@ public class Movie {
   private String fileurl;
   private String actors;
   private String plot;
+  private String awards;
+  private Float boxoffice;
   private LocalDateTime timein;
   private String doubanId;
   private String imdbid;
