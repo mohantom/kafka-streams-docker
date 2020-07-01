@@ -109,4 +109,9 @@ public class MovieEsConfig {
     return props;
   }
 
+  @Bean
+  public MovieEsRestService movieEsRestService(RestHighLevelClient esClient) {
+    return new MovieEsRestService(esClient);
+  }
+
 }

@@ -19,11 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -124,6 +126,16 @@ public class MovieEsService {
     }
   }
 
+  public boolean deleteIndex(String indexName) throws IOException {
+    if (!isExists(indexName)) {
+      return false;
+    }
+
+    DeleteIndexRequest request = new DeleteIndexRequest(indexName);
+    AcknowledgedResponse response = esClient.indices().delete(request, RequestOptions.DEFAULT);
+    return response.isAcknowledged();
+  }
+
   private BulkRequest createBulkRequestMoviesYear(ConsumerRecords<String, Long> records) {
     BulkRequest bulkRequest = new BulkRequest();
     for (ConsumerRecord<String, Long> r : records) {
@@ -141,7 +153,7 @@ public class MovieEsService {
     BulkRequest bulkRequest = new BulkRequest();
     for (ConsumerRecord<String, String> r : records) {
       Movie movie = JacksonUtil.fromJson(r.value(), Movie.class);
-      IndexRequest indexRequest = new IndexRequest(MOVIES).id(movie.getMovieid()).source(r.value(), XContentType.JSON);
+      IndexRequest indexRequest = new IndexRequest(MOVIES).id(movie.getImdbid()).source(r.value(), XContentType.JSON);
       log.info("key: {}, value: {}", r.key(), r.value());
       bulkRequest.add(indexRequest);
     }

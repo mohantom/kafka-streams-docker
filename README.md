@@ -54,13 +54,21 @@ docker system prune --volumes
 
 ```
 
+
 ## movie-loader
 to rescan (enrich) movies
 1. http://localhost:8010/loader/movie/scan?append=false
-2. http://localhost:8010/loader/movie/scan?append=true
+
+2. drop mongo `movie` collection, and es7 `movies` index
+or `docer system prune --volumes`
+
+3. reload movie data to mongo and es7: http://localhost:8010/loader/movie/load
 
 
 ## Mongo
+- [Introduction to Spring Data MongoDB](https://www.baeldung.com/spring-data-mongodb-tutorial)
+- [MongoTemplate aggregation](https://www.baeldung.com/spring-data-mongodb-projections-aggregations)
+
 try this in browser:
 http://localhost:8040/mongo/movie/query?title=Terminator
 
@@ -70,22 +78,25 @@ http://localhost:8040/mongo/movie/all?size=250&sortField=rating&direction=DESC&p
 Or query with [Mongo Compass](https://www.mongodb.com/products/compass)
 connection: mongodb://root:example@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false
 
+
 ## ES7
+[ES Rest Highlevel API](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html)
+
 use `postman`
 ```shell script
 localhost:9200/movies/_search
 localhost:9200/movies-year/_search
 ```
 
+
 ## TODO
-- endpoint to drop es7 index and mongo collection
+- Endpoint to drop es7 index and mongo collection
 - React app to display movies
     - [x] maven build ui, copy build to docker
     - [x] query stats
     - [x] query stats from es7
     - [ ] infinite scroll
     - [ ] filters: genre, years, rating, director?
-    - [ ] fix movies with rating N/A from code
     - [ ] fix movie stats filter
 - deploy to aws
 - play from nas

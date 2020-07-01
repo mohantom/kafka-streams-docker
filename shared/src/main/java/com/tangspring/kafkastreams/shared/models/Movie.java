@@ -1,5 +1,6 @@
 package com.tangspring.kafkastreams.shared.models;
 
+import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,4 +33,8 @@ public class Movie {
   private String imdbid;
   private String tmdbid;
   private String omdbid;
+
+  public static Movie from(String json) {
+    return JacksonUtil.fromJson(json, Movie.class);
+  }
 }
