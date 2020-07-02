@@ -39,7 +39,6 @@ LA Confidential 1997 8.3 犯罪惊悚 x265.mkv
 Little Women 2019 7.9 x264.mp4
 Marriage Story 2019 8.2 web.mkv
 Mary Poppins Returns 2018 7.1 喜剧家庭 x265.mp4
-Memories of Murder 2003 8.5 Korean.mkv
 Men in Black 2019 5.6 x265.mkv
 Mirage 2018 720p web.mkv
 Mission Impossible Fallout 2018 7.7 x264.mp4
@@ -50,7 +49,6 @@ Once Upon A Time... In Hollywood 2019 7.8 web.mp4
 Onward 2020 7.5 web.mp4
 Parasite 2019 8.6 x265.mkv
 Pokémon Detective Pikachu 大侦探皮卡丘 2019 6.9 动画喜剧 web.mkv
-Ralph Breaks the Internet 无敌破坏王2 2018 7.4 HDR.mkv
 s 使徒行者 2016 6.5.mp4
 s 使徒行者2谍影行动 2019.mkv
 Secret Life of Pets 2 2019 6.5 x265.mkv
@@ -75,7 +73,6 @@ The Mule 2018 7.1 犯罪剧情 x264.mp4
 The November Man 2014 6.3.mp4
 The Square 2017 7.2 瑞典喜剧.mkv
 Toy Story 4 2019 web.mkv
-Vertigo 迷魂记 1958 8.3 剧情惊悚.mkv
 w 我不是药神 2018 x264.mp4
 w 无双 2018 8.1 剧情犯罪 x265.mkv
 w 无名之辈 2018 8.1 喜剧 HDTC.mp4
@@ -86,7 +83,6 @@ x 西虹市首富 2018.mkv
 X-Men 3 X战警3 2006 7.0 SDHFx265.mkv
 Swordfish 剑鱼行动 2001 6.3 动作惊悚 720p.mkv
 Out of Sight 战略高手 1998 7.2 动作喜剧 SDHF.mkv
-The Lost Room 1 失落的房间 2006 8.4 动作科幻 mDVD.mkv
 Chappie 超能查派 2015 7.1 动作科幻 SDHF.mkv
 National Treasure 2 国家宝藏2 2007 6.7 动作冒险 x265.mkv
 The Book of Eli 艾利之书 2010 6.9 动作冒险 SDHF480.mkv
@@ -97,7 +93,6 @@ Die Hard 4 虎胆龙威4 2007 7.4 动作犯罪 SDHF1080.mkv
 Superman Doomsday 超人之死 2007 7.0 动画冒险 MiniSD.mkv
 Now You See Me 2 惊天魔盗团2 2016 6.7 喜剧动作 SDHF.mkv
 Machete 弯刀 2010 7.3 动作 MiniSD.mkv
-The Lost Room 2 失落的房间 2006 8.4 动作科幻 mDVD.mkv
 U-571 猎杀U-571 2000 6.4 动作剧情 miniHD cn.mkv
 Kingsman 王牌特工2黄金圈 2017 7.1 喜剧动作 SDHFx265.mkv
 Spider-Man 2 蜘蛛侠2 2004 7.5 动作 SDHFx265.mkv
@@ -105,7 +100,6 @@ Rocky 6 洛奇6 1976 8.0 剧情运动 720p.mkv
 S.W.A.T. 反恐特警组 2003 5.9m6.8 动作犯罪 720p.mkv
 Green Zone 绿色地带 2010 7.2 动作惊悚 MiniHD.mkv
 Empire of the Sun 太阳帝国 1987 7.7 动作战争 SDHF.mkv
-Thor：The Dark World 雷神2：黑暗世界 2013 7.6 动作科幻 SDHF1080.mkv
 Death Race 死亡飞车 2008 6.7 动作惊悚 miniSD.mkv
 Contagion 2011 6.7 Action x265.mkv
 Redbelt 红带高手 2008 6.9 动作剧情 720p.mkv
@@ -155,10 +149,8 @@ Baahubali 2 巴霍巴利王2：终结 2017 8.4 动作奇幻 SDHF.mkv
 A History of Violence 暴力史 2005 7.5 动作犯罪 SDHF.mkv
 Dead Man Down 死人的复仇 2013 6.6 动作犯罪 SDHF.mkv
 Star Trek 9 星舰迷航9：起义 1998 6.4 动作科幻 MiniSD.mkv
-Pineapple Express 菠萝快车 2008 7.2 动作喜剧 720p.mkv
 Star Trek III 星舰迷航记-寻找史波克 1984 6.5 动作冒险 miniSD.mkv
 Ender's Game 安德的游戏 2013 7.1 动作科幻 SDHF1080.mkv
-Allegiant 分歧者3：忠诚世界 2016 5.8 动作科幻 SDHF.mkv
 Pirates of the Caribbean 3 加勒比海盗3 2007 7.0 动作冒险 SDHFx265.mkv
 Fast & Furious 速度与激情4 2009 6.4 Action SDHFx265.mkv
 The Bourne 1 谍影重重 2002 7.8 动作惊悚 SDHF1080.mkv
@@ -182,7 +174,6 @@ First Blood 第一滴血1 1982 7.4 动作 720p.mkv
 Black Hawk Down 黑鹰坠落 2001 7.7 动作战争 720p.mkv
 Spectre 007幽灵党 2015 7.0 动作冒险 SDHF1080.mkv
 Payback Straight Up 危险人物 2006 8.0 DC 动作 720p.mkv
-Terminator Genisys 终结者：创世纪 2015 7.0 动作科幻 SDHF1080.mkv
 Samurai I Musashi Miyamoto 宫本武藏 1954 7.7 动作冒险 HALFCD.mkv
 Batman Returns 蝙蝠侠归来 1992 6.9 SDHF1080.mkv
 Divergent 分歧者：异类觉醒 2014 7.0 动作科幻 x265.mkv
@@ -192,7 +183,6 @@ Into the White 白色严冬 2012 7.6 动作战争 SDHF720.mkv
 Eagle Eye 鹰眼 2008 6.8 动作神秘 720p.mkv
 The Negotiator 王牌对王牌 1998 6.2 动作犯罪 SDHF cn.mkv
 Hulk vs. 绿巨人大战雷神托尔 2009 7.2 动画动作 MiniSD.mkv
-The Thing 突变第三型 1982 8.1 动作科幻 miniSD.mkv
 A Fistful of Dollars 荒野大镖客 1964 8.0 动作西部 SDHF.mkv
 Tora! Tora! Tora! 虎虎虎 1970 7.5 动作冒险 720p.mkv
 Terminator Genisys 终结者5.创世纪 2015 7.0 动作科幻 SDHFx265.mkv
@@ -204,7 +194,6 @@ Star Trek VI 星舰迷航记-未知国度 1991 7.2 动作科幻 miniSD.mkv
 Mad Max：Fury Road 疯狂的麦克斯：狂暴之路 2015 8.3 动作 SDHF.mkv
 The Expendables 3 敢死队3 2014 6.3 动作冒险 SDHF.mkv
 Man on Fire 怒火救援 2004 7.7 动作犯罪 SDHF cn.mkv
-Pirates of the Caribbean 5 加勒比海盗5 2017 7.1 动作奇幻 SDHFx265.mkv
 A Bridge Too Far 遥远的桥 1977 7.3 动作战争 SDHF cn.mkv
 Spider-man Homecoming 蜘蛛侠英雄归来 2017 7.6 动作科幻 MiniFHD.mkv
 Vanishing Point 粉身碎骨 1971 7.3 动作剧情 MiniSD.mkv
@@ -255,7 +244,6 @@ Spy Game 间谍游戏 2001 6.9 动作惊悚 SDHF.mkv
 Gangster Squad 匪帮传奇 2013 7.1 动作犯罪 SDHF.mkv
 Captain America 美国队长.第一复仇者 2011 7.2 SDHFx265.mkv
 Transporter 3 非常人贩3 2008 6.0 动作犯罪 miniSD.mkv
-Cloverfield 科洛弗档案 2008 7.5 动作神秘 MiniSD.mkv
 Crows Zero 2 热血高校2 2009 8.8 日本动作 MiniSD.mkv
 The Arrival 天袭 1996 6.1 动作科幻 MiniSD.mkv
 The Longest Day 最长的一日 1962 7.8 动作历史 SDHF.mkv
@@ -273,7 +261,6 @@ Thor Ragnarok 雷神3.诸神黄昏 2017 8.0 动作奇幻 HDR.mkv
 Spider-Man 蜘蛛侠 2002 7.4 动作奇幻 SDHFx265.mkv
 The Hunt For Red October 猎杀红色十月 1990 7.6 动作冒险 SDHF.mkv
 Pacific Rim 环太平洋 2013 7.6 动作科幻 SDHFx265.mkv
-Ant-Man And The Wasp 蚁人2 2018 HDR.mkv
 The Bridge On The River Kwai 桂河大桥 1957 8.5 剧情战争 MiniSD.mkv
 Looper 环形使者 2012 7.9 动作犯罪 SDHF.mkv
 Tomb Raider 古墓丽影：源起之战 2018 6.8 动作冒险 x265.mkv
@@ -291,7 +278,6 @@ The Wrestler 摔角王 2008 8.4 剧情动作 MINISD.mkv
 Layer Cake 夹心蛋糕 2004 7.4 动作犯罪 720p.mkv
 Commando 独闯龙潭 1985 6.0 动作冒险 SDHF.mkv
 Transporter 1 非常人贩1 2002 6.5 动作犯罪 miniSD cn.mkv
-Ant-Man 蚁人 2015 7.6 科幻动作 SDHF1080.mkv
 Dog Soldiers 闪灵战士 2002 6.8 动作惊悚 MiniSD.mkv
 King Kong 金刚 2005 7.5 冒险 SDHFx265.mkv
 Need for Speed 极品飞车 2014 7.4 动作犯罪 SDHF.mkv
@@ -359,7 +345,6 @@ RocknRolla 摇滚黑帮 2008 7.2 动作犯罪 SDHF.mkv
 The Hunger Games Mockingjay-Part 1 饥饿游戏3：嘲笑鸟(上) 2014 7.0 动作科幻 SDHF.mkv
 Battle in Seattle 西雅图之战 2007 7.0 动作剧情 720p.mkv
 Stardust 星尘 200 7.9 动作科幻 MiniSD cn.mkv
-Hot Fuzz 热血警探 2007 8.0 动作喜剧 720p.mkv
 6 Bullets 六颗子弹 2012 6.5 动作犯罪 SDHF.mkv
 All Quiet On The Western Front 西线无战事 1930 8.1 战争剧情 MiniSD.mkv
 Master and Commander  怒海争锋 2003 7.5 动作冒险 720p.mkv
@@ -386,15 +371,12 @@ xXx 极限特工 2002 5.5 冒险动作 miniSD.mkv
 20000 Leagues Under the Sea 海底两万里 1954 7.4 科幻冒险 SDHF.mkv
 X-Men 1 X战警1 2000 7.4 动作科幻 720p.mkv
 Power Rangers 超凡战队 2017 6.1 动作科幻 SDHF.mkv
-Terminator 4 终结者4 2009 6.8 动作 SDHF1080.mkv
 Batman 蝙蝠侠 1989 7.6 动作科幻 720p.mkv
 The Baader Meinhof Complex 巴德尔和迈因霍夫集团 2008 7.4 德国动作犯罪 SDHF.mkv
 Clash of the Titans 诸神之战 2010 6.9 动作冒险 MiniSD.mkv
 Dawn of the Dead 活死人黎明 2004 7.4 恐怖科幻 SDHF.mkv
-The Fate of the Furious 速度与激情8 2017 7.0 动作犯罪 SDHF x265.mkv
 Die Hard 3 虎胆龙威3 1995 7.5 动作犯罪 SDHF1080.mkv
 Terminator Salvation 终结者4救赎 2009 6.8 动作科幻 SDHFx265.mkv
-The LEGO Batman Movie 乐高老爷 2017 7.3 动画动作 SDHF.mkv
 Shoot 'Em Up 赶尽杀绝 2007 7.0 动作喜剧 720p.mkv
 Jack The Giant Slayer 巨人捕手杰克 2013 6.6 冒险幻想 SDHF.mkv
 Three Outlaw Samurai 武林三杀手 1964 7.5 日本动作 SDHF720.mkv
@@ -403,7 +385,6 @@ Captain America：Civil War 美国队长3 2016 8.1 动作科幻 SDHF.mkv
 No Escape 无处可逃 2015 6.9 动作惊悚 SDHF.mkv
 Tomorrowland 明日世界 2015 6.6 动作科幻 SDHF.mkv
 GoldenEye 007黄金眼 1995 7.2 动作冒险 SDHF cn.mkv
-Man of Steel 超人.钢铁之躯 2013 7.8 动作冒险  cn.mkv
 Salvador 萨尔瓦多 1986 7.5 战争传记 MiniSD.mkv
 Battlestar Galactica 太空堡垒卡拉狄加：血与铬 2012 8.0 科幻 SDHF.mkv
 Saving Private Ryan 拯救大兵瑞恩 1998 8.5 动作战争 x265.mkv
@@ -470,8 +451,6 @@ Spartacus 斯巴达克斯 1960 8.0 动作历史 SDHF.mkv
 Dunkirk 敦刻尔克 2017 8.1 历史战争 SDHFx265.mkv
 Mesrine Part 2 头号公敌Ⅱ 2008 7.5 法国动作犯罪 SDHF.mkv
 Black Dynamite 黑色炸药 2009 7.5 动作喜剧 720p.mkv
-Three Kings 夺金三王 1999 7.3 动作冒险 MiniSD.mkv
-The Hitman's Bodyguard 王牌保镖 2017 7.0 动作喜剧 x265.mkv
 Pearl Harbor 珍珠港 2001 5.6 动作剧情 SDHF cn.mkv
 Baby 宝贝计划 2015 8.2 印度动作犯罪 SDHF.mkv
 Broken Arrow 断箭 1996 5.9 动作惊悚 SDHF.mkv
@@ -484,7 +463,6 @@ The Towering Inferno 摩天大楼失火记 1974 6.8 动作惊悚 MiniSD.mkv
 Transporter 2 非常人贩2 2005 6.1 动作犯罪 miniSD.mkv
 Rambo 3 第一滴血3 1988 4.7 国英 MiniSD cn.mkv
 Jack Reacher：Never Go Back 侠探杰克：永不回头 2016 6.1 动作犯罪 SDHF.mkv
-The Matrix 3 黑客帝国3 2003 6.5 动作科幻 720p.mkv
 Entrapment 偷天陷阱 1999 6.1 动作犯罪 720p.mkv
 Zombieland  僵尸之地 2009 7.9 动作喜剧 SDHF.mkv
 Safe House 藏身之所 2012 7.0 动作犯罪 SDHF720.mkv
@@ -497,14 +475,12 @@ The Patriot 爱国者 2000 6.9 动作战争 SDHF1080.mkv
 Beverly Hills Cop 比弗利山警探 1984 7.3 动作喜剧 SDHF.mkv
 Star Wars 5 星球大战5 1980 8.8 动作冒险 720p.mkv
 Ninja Scroll 兽兵卫忍风帖 1993 7.9 动画动作 720p.mkv
-Thor 2011 x265.mkv
 John Wick Chapter 2 疾速特攻 2017 7.9 动作犯罪 SDHFx265.mkv
 The Magnificent Seven 豪勇七蛟龙 2016 7.0 动作西部 SDHF.mkv
 The Mummy 木乃伊 1999 6.9 动作奇幻 SDHF cn.mkv
 Pirates Of The Caribbean 1 加勒比海盗 2003 8.0 动作冒险 SDHFx265.mkv
 Star Wars 6 星球大战6 1983 8.3 动作冒险 720p.mkv
 Redemption 蜂鸟 2013 6.2 动作犯罪 SDHF.mkv
-Katyn 卡廷惨案 2007 7.2 波兰战争剧情 miniSD.mkv
 Justice League 2017 6.5 动作科幻 HDR.mkv
 Spy 女间谍 2015 7.2 喜剧动作 SDHF.mkv
 Blade 3 刀锋战士3 2004 5.9 动作幻想 MiniSD.mkv
@@ -525,7 +501,6 @@ Tombstone 墓碑镇 1993 7.7 动作历史 720p.mkv
 The Running Man 过关斩将 1987 6.5 动作 SDHF cn.mkv
 The Boondock Saints 2 处刑人2 2009 6.7 动作犯罪 720p.mkv
 The Mechanic 机械师 2011 8.3 动作剧情 SDHF cn.mkv
-Die Hard 3 虎胆龙威3 1995 7.4 动作 SDHF.mkv
 The Great Raid 大偷袭 2005 6.8.mkv
 The Wild Bunch 日落黄沙 1969 8.2 动作西部 iNT.mkv
 Wolverine X战警 2009 6.7 动作科幻 720p.mkv
@@ -533,16 +508,13 @@ X-Men：Apocalypse X战警：天启 2016 7.3 动作科幻 SDHF.mkv
 Batman Forever 永远的蝙蝠侠 1995 5.4 动作犯罪.mkv
 Enemy at the Gates 兵临城下 2001 7.5 历史惊悚 SDHF1080.mkv
 Skyfall 007大破天幕杀机 2012 8.2 动作冒险 SDHF cn.mkv
-V for Vendetta V字仇杀队 2005 8.2 动作惊悚 SDHF.mkv
 The Hurt Locker 拆弹部队 2008 8.0 动作剧情 SDHF.mkv
 The Equalizer 伸冤人 2014 7.3 动作犯罪 SDHF.mkv
 The Tourist 游客 2010 6.0 动作惊悚 SDHF.mkv
-The Impossible 惊天巨啸 2012 7.7 西班牙动作 SDHF.mkv
 Star Wars 8 星球大战8最后的绝地武士 2017 7.5 科幻动作 x265.mkv
 The Mask 变相怪杰 1994 6.7 动作喜剧 SDHF.mkv
 Star Trek Into Darkness 星际迷航：暗黑无界 2013 8.3 动作科幻 SDHF1080.mkv
 The Untouchables 铁面无私 1987 8.0 动作犯罪 SDHF.mkv
-The Incredible Hulk 绿巨人2.无敌浩克 2008 7.1 动作科幻 SDHFx265.mkv
 Tomorrow Never Dies 007明日帝国 1997 6.4 动作冒险 SDHF cn.mkv
 The Hunger Games：Catching Fire 饥饿游戏2：星火燎原 2013 8.2 动作科幻 SDHF1080.mkv
 Wanted 刺客联盟 2008 6.7 动作犯罪 SDHFx265.mkv
@@ -580,7 +552,6 @@ Star Wars 3 星球大战3 2005 7.9 动作冒险 720p.mkv
 Batman v Superman 蝙蝠侠大战超人：正义黎明 2016 7.0 动作科幻 SDHF1080.mkv
 The Dam Busters 轰炸鲁尔水坝记 1955 7.4 动作剧情 720p.mkv
 Europa Report 欧罗巴报告 2013 6.5 科幻惊悚 SDHF.mkv
-Apocalypse Now 现代启示录 1979 8.6 动作战争 SDHF cn.mkv
 Na igre 超能游戏者 2009 7.4 动作科幻 SDHF.mkv
 Star Trek 星舰迷航记－星际旅行 1979 6.2 冒险神秘 miniSD.mkv
 Allied 间谍同盟 2016 7.1 动作爱情 SDHF.mkv
@@ -592,7 +563,6 @@ Pitch Black 星际传奇1 2000 6.9 动作惊悚 miniSD.mkv
 We Were Soldiers 我们曾是战士 2002 6.9 动作战争 miniSD.mkv
 The Good the Bad and the Ugly 黄金三镖客 1966 9.0 冒险西部 SDHF.mkv
 Death Proof 金刚不坏 2007 7.2 动作犯罪 720p.mkv
-Dunkirk 敦刻尔克 2017 8.2 动作战争 x265.mkv
 Kill Bill 1 杀死比尔1 2003 8.2 动作犯罪 x265.mkv
 Avengers 2 复仇者联盟2.奥创纪元 2015 8.0 动作科幻 SDHFx265.mkv
 Snowpiercer 雪国列车 2013 7.6 动作科幻 SDHF.mkv
@@ -606,7 +576,6 @@ Den of Thieves 贼巢 2018 7.0 动作犯罪 x265.mkv
 Natural Born Killers 天生杀人狂 1994 7.4 动作犯罪 SDHF720.mkv
 Knight And Day 危情谍战 2010 6.4 动作喜剧 SDHF.mkv
 Riddick 星际传奇3 2013 6.6 动作科幻 SDHF.mkv
-Thor The Dark World 2013 x265.mkv
 Transformers 2 变形金刚2 2009 6.1 动作 720p.mkv
 American Sniper 美国狙击手 2014 7.3 动作战争 SDHF.mkv
 Total Recall 宇宙威龙 1990 7.4 科幻冒险 MiniSD cn.mkv
@@ -619,7 +588,6 @@ Jurassic Park 1 侏罗纪公园1 1993 7.9 冒险科幻 SDHFx265.mkv
 Unknown 不明身份 2011 动作 SDHF cn.mkv
 Crank 2 怒火攻心2：高压电 2009 6.7 动作喜剧 MiniSD.mkv
 X-Men 4 X战警：逆转未来 2014 8.2 动作科幻 SDHF1080.mkv
-Blade Runner 银翼杀手 1982 8.3 动作科幻 720p.mkv
 House of Games 赌馆 1987 7.4 动作惊悚 mDVD.mkv
 The Bourne Legacy 谍影重重4 2012 6.7 动作 SDHF cn.mkv
 Lethal Weapon 3 致命武器3 1992 6.5 动作 SDHF cn.mkv
@@ -635,7 +603,6 @@ Admiral 无畏上将高尔察克 2008 7.0 历史战争 SDHF.mkv
 Real Steel 铁甲钢拳 2011 7.5 动作科幻 SDHFx265.mkv
 The Avengers 复仇者联盟 2012 8.7 动作科幻 SDHFx265.mkv
 Rambo 4 第一滴血4 2008 7.3 MiniSD cn.mkv
-Independence Day 独立日 1996 6.7 动作科幻 HDR.mkv
 Minority Report 少数派报告 2002 7.7 动作神秘 x265.mkv
 Bon Cop Bad Cop 好警察，坏警察 2006 7.0 动作喜剧 MiniSD.mkv
 Thor The Dark World 雷神2.黑暗世界 2013 7.6 动作奇幻 SDHFx265.mkv
@@ -700,7 +667,6 @@ X-Men 2 X战警2 2003 7.8 动作科幻 720p.mkv
 Mechanic 2 机械师2：复活 2016 5.7 动作犯罪 SDHF.mkv
 Running Scared 持续惊恐 2006 7.5 动作犯罪 SDHF720.mkv
 Let's Be Cops 警察游戏 2014 6.7 动作喜剧 SDHF.mkv
-The Matrix 2 黑客帝国2 2003 7.1 动作科幻 720p.mkv
 The Dark Knight Rises 2012 x265.mkv
 The Quick and the Dead 致命的快感 1995 6.2m7.0 动作冒险 720p.mkv
 The East 东方 2013 7.2 动作惊悚 SDHF.mkv
@@ -720,13 +686,11 @@ The Perfect Storm 完美风暴 2000 6.2m7.5 动作冒险 720p.mkv
 Wild Target 狂野目标 2010 6.9m7.8 动作喜剧 HalfCD.mkv
 Star Wars 2 星球大战2 2002 6.8 动作冒险 720p.mkv
 Lethal Weapon 2 致命武器2 1989 7.0 动作喜剧 720p.mkv
-The Chronicles of Riddick 星际传奇2 2004 6.4m7.3 动作科幻 720p.mkv
 Death Sentence 非法制裁 2007 6.8 动作 miniSD.mkv
 Green Lantern 绿灯侠 加长版 2011 6.1 动作 SDHF720.mkv
 Fast & Furious 7 速度与激情7 2015 7.5 动作犯罪 SDHFx265.mkv
 Star Wars 1 星球大战1 1999 6.4 动作冒险 720p.mkv
 From Paris with Love 巴黎谍影 2010 6.4m7.1 动作犯罪 HalfCD2.mkv
-Wasabi 绿芥刑警 2001 6.5 法国动作喜剧 SDHF.mkv
 The LEGO Ninjago 乐高忍者 2017 6.0 动画 HDR.mkv
 Ice Age 4 冰河世纪4 2012 6.6.mkv
 Pocahontas 2 风中奇缘2 1998 6.3.mkv
@@ -812,7 +776,6 @@ Stuart Little 精灵鼠小弟 1999 5.9 喜剧家庭 MiniSD.mkv
 Tom and Jerry 猫和老鼠：绿野仙踪 2011 6.6.mkv
 The Fox and the Hound 2 狐狸与猎狗2：终生的朋友 2006 6.6.mkv
 Chicken Run 小鸡快跑 2000 7.5.mkv
-The Peanuts Movie 史努比 2015 7.3 动画.mp4
 Tinker Bell and the Great Fairy Rescue 小叮当：拯救精灵大作战 2010 7.9 动画奇幻 SDHF.mkv
 Doraemon 哆啦A梦：大雄的宇宙英雄记 2015 7.1 SDHF.mkv
 Bambi 小鹿斑比1 1942 8.2.mkv
@@ -853,16 +816,13 @@ Tekkonkinkreet 恶童 2006 日本动画 MiniSD.mkv
 The Wild Life 鲁滨逊漂流记 2016 5.3 动画喜剧 SDHF.mkv
 The Triplets of Belleville 2003 7.8 法国动画喜剧.mp4
 Kubo and the Two Strings 魔弦传说 2016 7.9 动画奇幻 SDHF.mkv
-5 Centimeters Per Second 秒速五厘米 2007 7.5 日本动画剧情 MiniSD.mkv
 The Rescuers 拯救小英雄 1977 6.9.mkv
 Bolt 闪电狗 2008 6.9.mkv
 Ballerina 了不起的菲丽西 2016 6.8 法国动画 SDHF.mkv
 Mary and Max 玛丽和马克思 2009 8.9.mkv
 Despicable Me 2 卑鄙的我2 2013 7.8 动画喜剧 x265.mkv
-Tinker Bell 奇妙仙子1：奇妙仙子 2008 7.7 MiniHD.mkv
 Snow White and the Seven Dwarfs 白雪公主1937 8.0 SDHF.mkv
 Moana 海洋奇缘 2016 7.7 动画喜剧 SDHF.mkv
-Big Hero 6 超能陆战队 2014 8.0 动画 SDHF.mkv
 Cloudy with a Chance of Meatballs 2 天降美食2 2013 6.5 动画喜剧 SDHF1080.mkv
 Lilo & Stitch 星际宝贝 2002 7.2 SDHF.mkv
 Meet the Robinsons 拜见罗宾逊一家 2007 7.6.mkv
@@ -878,7 +838,6 @@ The Boss Baby 宝贝老板 2017 6.4 动画喜剧 HDR.mkv
 Inside Out 头脑特工队 2015 8.4 动画 SDHF1080.mkv
 Ice Age 1 冰河世纪1 2002 7.6.mkv
 The Tale of Despereaux 双鼠记 2008 6.7.mkv
-Paprika 盗梦侦探 2006 7.7 日本动画科幻 MiniSD.mkv
 The Smurfs 蓝精灵 2011 7.3.mkv
 Dumbo 小飞象 1941 8.0.mkv
 Ice Age 3 冰河世纪3 2009 7.0 SDHFx265.mkv
@@ -893,7 +852,6 @@ Avalon 阿瓦隆 2001 6.7 波兰科幻动画 MiniSD.mkv
 Harry Potter and the Prisoner of Azkaban 2004 x265.mkv
 Polar Express 极地特快 2004 6.6.mkv
 The Princess and the Frog 公主与青蛙 2009 7.2.mkv
-Tokyo Godfathers 东京教父 2003 7.7 日本冒险动画 SDHF.mkv
 Detective Conan 名侦探柯南：纯黑的恶梦 2016 7.2 动画悬疑 SDHF.mkv
 Brammetje Baas 邦邦停不了 2012 6.8 荷兰家庭.avi
 A Christmas Carol 圣诞颂歌 2009 7.0 动画奇幻 SDHC.mkv
@@ -902,7 +860,6 @@ Miracle on 34th Street 34街奇迹 1994 6.4 奇幻家庭 SDHF.mkv
 Home Alone 2 小鬼当家2纽约迷途记 1992 6.6 喜剧犯罪 MiniSD.mkv
 Cloudy With A Chance Of Meatballs 天降美食 2009 7.2 动画 SDHF1080.mkv
 Happy Feet 2 快乐的大脚2 2011 5.9.mkv
-Tinker Bell and the Great Fairy Rescue 小叮当：夏日风暴 2010 7.0.mkv
 Christopher Robin 2018 7.4 动画冒险 x265.mkv
 The Simpsons Movie 辛普森一家 2007 7.4.mkv
 Open Season 丛林大反攻 2006 6.2.mkv
@@ -934,7 +891,6 @@ The Sword in the Stone 石中剑 1963 7.2.mkv
 Little Mermaid 1 小美人鱼1 1989 7.6.mkv
 Hachi A Dog's Tale 犬八公的故事 2009 8.1.mkv
 Doraemon the Movie 哆啦A梦：新·大雄的日本诞生 2016 6.8 日本动画 SDHF.mkv
-Alice in Wonderland 爱丽丝梦游仙境 2010 7.0.mkv
 Cats & Dogs 2 猫狗大战2 2010 6.5.mkv
 Tinker Bell 小叮当 2008 6.7 动画奇幻 SDHF.mkv
 Wonder Woman 神奇女侠 2009 7.1 动画科幻 miniSD.mkv
@@ -951,11 +907,9 @@ Escape from Planet Earth 逃离地球 2013 6.0.mkv
 Epic 森林战士 2013 6.7 动画冒险 SDHF.mkv
 Toy Story 1 玩具总动员1 1995 8.0 x265.mkv
 The Boxtrolls 盒子怪 2014 7.0 动画喜剧 SDHF.mkv
-Fantastic Mr. Fox 了不起的狐狸爸爸 2009 7.8 动画喜剧 SDHF.mkv
 Shaun the Sheep 小羊肖恩 2015 7.4 动画喜剧 SDHF.mkv
 The Wizard of Oz 绿野仙踪 1939 8.1.mkv
 The Croods 疯狂原始人 2013 7.2.mkv
-The Secret World of Arrietty 借东西的小人阿莉埃蒂 2010 7.6 日本动画 MiniSD.mkv
 Space Buddies 太空犬 2009 6.6.mkv
 Your Name 你的名字 2016 日本动画奇幻.mp4
 Underdog 超狗任务 2007 6.4.mkv
@@ -964,7 +918,6 @@ Home Alone 小鬼当家 1990 6.8 喜剧犯罪家庭 miniSD.mkv
 The Nut Job 抢劫坚果店 2014 5.7 动画 SDHF.mkv
 The Angry Birds Movie 愤怒的小鸟 2016 6.3 动画.mkv
 Lion King 3 狮子王3 2004 6.6.mkv
-The Wind Rises 起风了 2013 8.0 日本动画 SDHF.mkv
 The Little Prince 小王子 2015 7.7 法国动画 SDHF.mkv
 Flushed Away 鼠国流浪记 2006 6.6.mkv
 Tom And Jerry 猫和老鼠：飙风天王 2005 7.2.mkv
@@ -974,7 +927,6 @@ Shrek 1 怪物史莱克1 2001 7.9.mkv
 Despicable Me 卑鄙的我 2010 8.5.mp4
 Rio 里约大冒险 2011 7.0.mkv
 Ice Age 2 冰河世纪2 2006 6.9.mkv
-Only Yesterday 岁月的童话 1991 7.7 日本动画 MiniSD cn.mkv
 Brave 勇敢传说 2012 7.2 720p.mkv
 Open Season 4 丛林大反攻4：吓傻了 2015 5.2 动画喜剧 SDHF.mkv
 Arthur and the Invisibles 亚瑟和他的迷你王国 2006 6.0.mkv
@@ -994,8 +946,6 @@ Only Yesterday 岁月的童话 1991 7.7.mkv
 Porco Rosso 红猪 1992 7.8.mkv
 Princess Mononoke 幽灵公主 1997 8.4.mkv
 Spirited Away 千与千寻 2001 8.6.mkv
-The Cat Returns 猫的报恩 2002 7.3.mkv
-The Cat Returns 猫的报恩b 2002 7.3.mkv
 The Secret World of Arrietty 借东西的小人阿莉埃蒂 2010 7.6.mkv
 The Wind Rises 起风了 2013 7.8.mkv
 Whisper of the Heart 侧耳倾听 1995 8.0.mkv
@@ -1726,11 +1676,9 @@ Goon 冰球坏小子 2011 7.0 喜剧运动 SDHF720.mkv
 Napoleon Dynamite 大人物拿破仑 2004 6.9m7.8 喜剧 MiniSD.mkv
 Unbelievable Adventures of Italians in Russia 意大利人在俄罗斯的奇遇 1974 7.8 苏联喜剧 MiniSD.mkv
 W 小布什传 2008 6.9 传记喜剧 miniSD.mkv
-Moonrise Kingdom 月亮升起之王国 2012 8.3 喜剧爱情 SDHF720.mkv
 Monsieur Lazhar 拉扎老师 2011 7.7 加拿大喜剧 SDHF.mkv
 Will Success Spoil Rock Hunter 成功之路 1957 7.1 喜剧爱情 SDHF.mkv
 Moonstruck 月色撩人 1987 7.1 喜剧爱情 MiniSD.mkv
-Frances Ha 弗兰西丝·哈 2012 7.6 喜剧剧情 SDHF.mkv
 My Cousin Vinny 智勇急转弯 1992 7.4 喜剧犯罪 SDHF720.mkv
 The Best Exotic Marigold Hotel 涉外大酒店 2011 7.5 英国喜剧 SDHF720.mkv
 You're Next 你是下一个 2011 6.8 喜剧恐怖 SDHF.mkv
@@ -1795,7 +1743,6 @@ The Messenger 信使 2009 7.5 爱情战争 MiniSD.mkv
 Lady Bird 博得小姐 2017 7.6 喜剧剧情 x265.mkv
 Sky of Love 恋空 2007 7.1 日本爱情青春 MiniSD.mkv
 Crazy Rich Asians 2018 7.3 喜剧爱情 x265.mkv
-Match Point 赛末点 2005 7.8 爱情惊悚 miniSD.mkv
 In the Loop 灵通人士 2009 7.6 喜剧 720p.mkv
 Big 飞越未来 1988 7.2 喜剧剧情 720p.mkv
 Confessions of a Dangerous Mind 危险思想的自白 2002 7.1 传记喜剧 720p.mkv
@@ -1845,7 +1792,6 @@ Meet The Parents 拜见岳父大人 2000 7.0 MiniSD.mkv
 Flipped 怦然心动 2010 7.0 喜剧爱情 SDHF cn.mkv
 Game Night 游戏之夜 2018 7.1 喜剧犯罪 x265.mkv
 The Weather Man 天气预报员 2005 6.9 剧情喜剧 MiniSD.mkv
-Bad Genius 天才枪手 2017 7.9 泰国喜剧犯罪 MiniSD.mkv
 Garden State 情归新泽西 2004 7.9 喜剧 SDHF720.mkv
 Airport 2013 大空港 2013 7.8 日本喜剧 SDHF.mkv
 Super Troopers 超级骑警 2001 6.8 SDHF720.mkv
@@ -1854,7 +1800,6 @@ Midnight Run 午夜狂奔 1988 7.5 动作喜剧 MiniSD.mkv
 Original Sin 原罪 2001 5.6 爱情惊悚 MiniSD.mkv
 Under the Tuscan Sun 托斯卡尼艳阳下2003 6.7 爱情喜剧 HalfCD.mkv
 Mean Girls 贱女孩 2004 7.0 喜剧剧情 SDHF.mkv
-Charlie and the Chocolate Factory 查理和巧克力工厂 2005 7.1 冒险喜剧 720p.mkv
 Beautiful Girls 美丽佳人 1996 7.1 喜剧爱情 SDHF720.mkv
 Charade 谜中谜 1963 8.0 喜剧神秘 MiniSD.mkv
 The Beekeeper 养蜂人 1986 7.3 希腊喜剧 MiniSD.mkv
@@ -1881,7 +1826,6 @@ No Strings Attached 爱情无线牵 2011 6.3 喜剧爱情 MiniSD.mkv
 The Last Metro 最后一班地铁 1980 7.4 法国爱情 MINISD.mkv
 Find Me Guilty 判我有罪 2006 7.0 喜剧犯罪 SDHF720.mkv
 Achilles And The Tortoise 阿基里斯与龟 2008 7.6 日本喜剧 MiniSD.mkv
-Safety Last 最后安全 1923 8.3 爱情动作 MiniSD.mkv
 Paris, je t'aime 巴黎，我爱你 2006 7.5 爱情 720p.mkv
 While You Were Sleeping 二见钟情 1995 6.5 喜剧爱情 SDHF.mkv
 The Thomas Crown Affair 天罗地网 1999 6.7 喜剧犯罪 SDHF cn.mkv
@@ -1889,18 +1833,14 @@ Tropic Thunder 热带惊雷 2008 7.2 动作喜剧 720p.mkv
 L'auberge espagnole 西班牙公寓 2002 7.3 法国喜剧爱情 MiniSD.mkv
 To Be or Not to Be 你逃我也逃 1942 8.2 喜剧战争 SDHF.mkv
 The Darjeeling Limited 穿越大吉岭 2007 7.2 冒险喜剧 SDHF.mkv
-The Remains of the Day 长日留痕 1993 7.8 剧情爱情 MiniSD.mkv
 Grudge Match 旗鼓相当 2013 6.6 喜剧运动 SDHF.mkv
 Good Bye Lenin! 再见列宁 2003 7.7 德国喜剧 SDHF.mkv
-The Triplets of Belleville 疯狂约会美丽都 2003 7.2 法国动画喜剧 MiniSD.mkv
-Eternal Sunshine ... 美丽心灵的永恒阳光 2004 7.9 爱情剧情 iNT.mkv
 Blazing Saddles 神枪小子 1974 7.8 喜剧西部 720p.mkv
 Dear Zindagi 美好的人生 2016 7.7 印度爱情 MiniSD.mkv
 Bottle Shock 酒质受损 2008 6.8 喜剧 SDHF.mkv
 Quadrille 瓜德利尔舞 1938 7.0 法国喜剧爱情 MiniSD.mkv
 A Room with a View 看得见风景的房间 1985 7.5 爱情喜剧 MiniSD.mkv
 A Night At The Opera 歌声俪影 1935 8.0 喜剧爱情 MiniSD.mkv
-The Simpsons Movie 辛普森一家 2007 7.7 动画喜剧 miniSD.mkv
 April Story 四月物语 1998 7.2 日本爱情 SDHF.mkv
 Win Win 双赢 2011 7.7 喜剧 SDHF720.mkv
 The Princess Bride 公主新娘 1987 8.1 冒险喜剧 MiniSD.mkv
@@ -1981,7 +1921,6 @@ Tais-toi! 你丫闭嘴 2003 7.0 法国喜剧犯罪 SDHF cn.mkv
 Role Models 模范贱兄弟 2008 7.2 喜剧 720p.mkv
 Sherlock Jr 福尔摩斯二世 1924 8.4 家庭喜剧 MiniSD.mkv
 The Angels Share 天使的一份 2012 7.3 喜剧剧情 SDHF.mkv
-Gone With The Wind 乱世佳人 1939 8.2 爱情剧情 SDHF.mkv
 The Terminal 幸福终点站 2004 7.2 剧情喜剧 SDHF.mkv
 Holiday 休假日 1938 7.8 喜剧爱情 MiniSD.mkv
 To All the Boys I've Loved Before 致所有我曾爱过的男孩 2018 喜剧 web.mkv
@@ -2119,12 +2058,10 @@ Kind Hearts And Coronets 仁心与冠冕 1949 8.4 喜剧剧情 MiniSD.mkv
 The Ugly Truth 丑陋事实 2009 6.5m7.5 喜剧爱情 720p.mkv
 Harold And Maude 哈洛与慕德 1971 8.1 喜剧爱情 MiniSD.mkv
 Saving Mr Banks 大梦想家 2013 7.7 剧情喜剧 SDHF.mkv
-The Wolf of Wall Street 华尔街之狼 2013 8.5 喜剧传记 SDHF.mkv
 The Barbarian Invasions 老爸的单程车票 2003 7.8 法国喜剧 MiniSD.mkv
 The Hidden Fortress 战国英豪 1958 8.0 动作冒险 MiniSD.mkv
 Hot Tub Time Machine 热浴盆时光机 2010 6.8 喜剧科幻 HalfCD2.mkv
 Halfway 前路漫漫 2009 6.4 日本爱情 MiniSD.mkv
-Run Lola Run 罗拉快跑 1998 8.0 德国爱情惊悚 miniSD.mkv
 Swiss Army Man 瑞士军刀男 2016 7.1 喜剧冒险 SDHF.mkv
 Eddie the Eagle 飞鹰艾迪 2015 7.5 喜剧传记 SDHF.mkv
 My Best Friend's Wedding 我最好朋友的婚礼 1997 6.2 喜剧爱情 miniSD cn.mkv
@@ -2143,7 +2080,6 @@ The Color of Magic 2 碟形世界-魔法光芒2 2008 7.4 奇幻家庭 miniSD.mkv
 Thank You for Smoking 感谢你抽烟 2005 7.8 喜剧 720p.mkv
 Pineapple Express 菠萝快车 2008 7.0 喜剧犯罪 SDHF.mkv
 Wild At Heart 我心狂野 1990 7.1 剧情喜剧 miniSD.mkv
-Taxi 出租车 1998 6.7 法国喜剧.mkv
 Hormones 荷尔蒙 2008 7.8 泰国喜剧 HalfCD.mkv
 Stranger Than Paradise 天堂陌影 1984 7.5 喜剧 MiniSD.mkv
 Intouchables 触不可及 2011 8.5 传记喜剧 x265.mkv
@@ -2176,7 +2112,6 @@ Cyrano de Bergerac 大鼻子情圣 1990 7.6 法国喜剧爱情 SDHF.mkv
 Casablanca 卡萨布兰卡 1942 8.8 爱情战争 SDHF.mkv
 The Lost Valentine 失落的情人节 2011 7.7 爱情 MiniSD.mkv
 Lemony Snicket's A Series of Unfortunate Events 雷蒙·斯尼奇的不幸事件 2004 6.9 冒险喜剧 MiniSD.mkv
-Vertigo 迷魂记 1958 8.4 爱情悬疑 SDHF.mkv
 Rocket Science 火箭科学 2007 6.8.mp4
 Her 她 2013 8.2 爱情科幻 SDHF.mkv
 The Misfits 乱点鸳鸯谱 1961 7.3 喜剧西部 SDHF.mkv
@@ -2266,7 +2201,6 @@ Two Lovers 两个情人 2008 7.3 爱情 720p.mkv
 Red Dog 红犬 2011 7.6 喜剧剧情 SDHF.mkv
 LOVE：Masao kun ga iku! 爱犬正雄向前冲！2012 7.8 日本喜剧 SDHF.mkv
 American Pie 美国派1 1999 6.9 喜剧 720p.mkv
-La Femme Nikita 妮基塔 1990 7.5 法国爱情动作 miniSD cn.mkv
 The Story of a Cheat 骗子的故事 1936 7.7 法国喜剧 MiniSD.mkv
 The African Queen 非洲女王号 1951 8.1 爱情冒险 MiniSD.mkv
 Dumb And Dumber 阿呆与阿瓜 1994 7.1 冒险喜剧 国英 MiniSD cn.mkv
@@ -2345,7 +2279,6 @@ A Beautiful Mind 美丽心灵 2001 7.9 传记剧情 720p.mkv
 Stargate The Ark of Truth 星际之门-真理之舟 2008 7.1 冒险科幻 720p.mkv
 Scarface 疤面煞星 1983 8.2 犯罪剧情 MiniSD.mkv
 A Christmas Carol 圣诞颂歌 1951 8.0 MiniSD.mkv
-The Wizard of Oz 绿野仙踪 1939 8.3 幻想家庭 720p.mkv
 The Burning Plain 燃烧的平原 2008 6.9 剧情 MiniSD.mkv
 Sunset Blvd. 日落大道 1950 8.7 剧情黑色 MiniSD.mkv
 Syriana 谍对谍 2005 7.1 惊悚剧情 720p.mkv
@@ -2363,9 +2296,7 @@ Trumbo 特朗勃 2015 7.5 剧情传记 SDHF.mkv
 Who's Afraid of Virginia Woolf 灵欲春宵 1966 8.1 惊悚剧情 MiniSD.mkv
 Arrival 降临 2016 8.2 剧情科幻 SDHF.mkv
 Three Seasons 恋恋三季 1999 7.1 越南剧情 MiniSD.mkv
-The Good the Bad and the Ugly 黄金三镖客 1966 9.0 冒险西部 720p.mkv
 American Gangster 美国黑帮加长版 2007 8.0 miniSD.mkv
-Notorious 美人计 1946 8.3 剧情 MiniSD.mkv
 A.I. 人工智能 2001 7.0 冒险科幻 SDHF.mkv
 Brooklyn 布鲁克林 2015 7.5 剧情爱情 SDHF.mkv
 Satantango  撒旦的探戈 1994 8.7 匈牙利剧情 MiniSD.mkv
@@ -2380,7 +2311,6 @@ Gone Girl 2014 8.1 x264.mp4
 Wings Of Desire 柏林苍穹下 1987 8.0 幻想剧情 MiniSD.mkv
 Vivre Sa Vie 随心所欲 1962 7.9 法国剧情 MiniSD.mkv
 A Few Good Men 义海雄风 1992 7.6 剧情 国英 MiniSD cn.mkv
-The Usual Suspects 1995 8.7 犯罪神秘 720p.mkv
 The Burmese Harp 缅甸竖琴 1956 8.1 日本战争剧情 MiniSD.mkv
 Red Dragon 红龙 2002 7.2 犯罪惊悚 SDHF.mkv
 Rain Man 雨人 1988 8.0 剧情 720p.mkv
@@ -2409,7 +2339,6 @@ The Girl with the Dragon Tattoo 龙纹身的女孩 2011 8.1 犯罪神秘 SDHF720
 A Walk To Remember 初恋的回忆 2002 7.1 剧情 MiniSD.mkv
 Hidden Figures 隐藏人物 2016 MNHD.mkv
 The Man from Nowhere 大叔 2010 7.8 韩国动作犯罪 MySilu.mp4
-The Thomas Crown Affair 偷天游戏 1999 6.7m7.7 犯罪爱情 720p.mkv
 Amazon Forever 永远的亚马孙 2004 8.4 巴西剧情 SDHF.mkv
 Shine 闪亮的风采 1996 7.6 传记音乐 HalfCD.mkv
 Three Burials 艾斯卡达的三次葬礼 2005 7.6 冒险犯罪 MiniSD.mkv
@@ -2418,12 +2347,10 @@ The Boy in the Striped Pajamas 穿条纹睡衣的男孩 2008 7.8 剧情惊悚 Mi
 Talvar 罪恶 2015 8.5 印度剧情犯罪.mkv
 Life of Pi 少年派的奇幻漂流 2012 7.9 剧情奇幻.mp4
 The Orphanage 灵异孤儿院 2007 7.8 墨西哥剧情恐怖 iNT.mkv
-Memories of Murder 2003 8.1 Korea.mkv
 Rounders 赌王之王 1998 7.3 剧情 720p.mkv
 Gattaca 千钧一发 1997 7.8 科幻.mkv
 Red Desert 红色沙漠 1964 7.7 剧情 MiniSD.mkv
 Deepwater Horizon 深海浩劫 2016 7.2 冒险灾难 SDHF.mkv
-The Terminal 幸福终点站 2004 7.1 剧情喜剧 MiniSD.mkv
 The Best Of Youth 1 灿烂人生1 2003 8.3 意大利剧情爱情 MiniSD.mkv
 Special 26 26个特殊劫匪 2013 7.7 印度犯罪 SDHF.mkv
 Polisse 青少年警队 2011 7.6 法国犯罪 SDHF720.mkv
@@ -2485,7 +2412,6 @@ United 93 联航93 2006 7.8 犯罪剧情 MiniSD.mkv
 MirrorMask 魔镜面具 2005 7.0 冒险剧情 720p.mkv
 Three Days of The Condor 英雄不流泪 1975 7.5 剧情爱情 720p.mkv
 We Are Marshall 我们一条心 2006 7.2 剧情运动 iNT.mkv
-Stargate Continuum 星际之门-统一体  2008 7.4 冒险科幻 720p.mkv
 Once Were Warriors 夕阳武士 1994 7.9 新西兰剧情 MiniSD.mkv
 Almost Famous 成名之路 2000 8.0 剧情音乐 720p.mkv
 Paprika 红辣椒 2006 d8.9 日本 科幻动画 x265.mkv
@@ -2516,7 +2442,6 @@ The Lincoln Lawyer 林肯律师 2011 7.5 剧情犯罪 MiniSD.mkv
 Hotel Rwanda 2004 8.1 x264.mp4
 Demolition 破碎人生 2015 7.1 剧情 SDHF.mkv
 The Doors 大门 1991 7.0m8.2 传记剧情 720p.mkv
-Django Unchained 被解救的姜戈 2012 8.4 剧情西部.mkv
 Race 黑色闪电 2016 7.1 传记运动 SDHF.mkv
 Phone Booth 狙击电话亭 2002 7.2 惊悚剧情 MiniSD.mkv
 Three Monkeys 3只猴子 2008 7.6 土耳其剧情 miniSD.mkv
@@ -2548,7 +2473,6 @@ Bridge of Spies 间谍之桥 2015 7.6 剧情传记 SDHF.mkv
 The Da Vinci Code 达芬奇密码 2006 6.4m7.3 神秘惊悚 720p.mkv
 Still Alice 依然爱丽丝 2014 7.5 剧情 SDHF 25815008.mkv
 The 400 Blows 四百击 1959 8.1 法国剧情犯罪 miniSD.mkv
-Pulp Fiction 低俗小说 1994 8.9 犯罪剧情 SDHF720 cn.mkv
 The Silence Of The Lambs 沉默的羔羊 1991 8.7 犯罪惊悚 SDHF.mkv
 An Autumn Afternoon 秋刀鱼之味 1962 8.1 日本剧情 SDHF.mkv
 Steve Jobs 史蒂夫·乔布斯 2015 7.3 剧情传记 SDHF.mkv
@@ -2617,7 +2541,6 @@ Brokeback Mountain 2005 7.7 x265.mkv
 The Innocents 无罪的人 1961 8.0 恐怖惊悚 MiniSD.mkv
 Little Rose 蔷薇  2010 7.4 波兰剧情 HalfCD.mkv
 Chariots of Fire 烈火战车 1981 7.3 剧情 MiniSD.mkv
-Still Walking 步履不停 2008 8.0 日本剧情 MiniSD.mkv
 Sunrise 日出 1927 8.3 剧情 MiniSD.mkv
 Umberto D 风烛泪 1952 8.3 意大利剧情 MiniSD.mkv
 Out Of Africa 走出非洲 1985 7.0 传记爱情 MiniSD cn.mkv
@@ -2661,7 +2584,6 @@ Oshin 阿信电影版 2013 7.2 日本剧情 SDHF.mkv
 The Motorcycle Diaries 摩托日记 2004 7.9 阿根廷传记 MiniSD.mkv
 Sleuth 足迹 2007 6.5 剧情惊悚 SDHF.mkv
 Shutter Island 禁闭岛 2010 8.0 惊悚悬疑 x265.mkv
-War and Peace 战争与和平Ⅰ 1965 SDHF.mkv
 The Night Of The Hunter 猎人之夜 1955 8.2 剧情黑色 MiniSD.mkv
 The Edge of Seventeen 成长边缘 2016 7.4 MiniSD.mkv
 The 33 地心营救 2015 7.0 剧情传记 SDHF.mkv
@@ -2674,7 +2596,6 @@ The Illusionist 魔术师 2006 7.7 剧情神秘 720p.mkv
 Passengers 太空旅客 2016 7.0 科幻冒险 SDHF.mkv
 The Searchers 日落狂沙 1956 8.0 剧情西部 MiniSD.mkv
 Einstein and Eddington 爱因斯坦与爱丁顿 2008 7.2 剧情历史 SDHF.mkv
-The Departed 无间道风云 2006 8.5 犯罪剧情 BR-720p.mkv
 Blade Runner 银翼杀手 1982 8.2 科幻惊悚 SDHFx265.mkv
 Moonlight 月光男孩 2016 8.0 剧情同性 MiniHD.mkv
 The Message 上帝的使者 1976 8.2 冒险传记 MiniSD.mkv
@@ -2703,7 +2624,6 @@ The Secret Garden 秘密花园 1993 7.1 剧情家庭 HALFCD.mkv
 Once Upon A Time In America 美国往事 1984 8.4  剧情 miniSD.mkv
 The Impossible 惊天巨啸 2012 7.6 剧情惊悚 SDHF.mkv
 Requiem For a Dream 梦之安魂曲 2000 8.5 剧情 BR-720P.mkv
-Titanic 泰坦尼克号 1997 7.5 剧情历史 SDHF1080.mkv
 The Silence 沉默 1963 8.0 瑞典剧情 MiniSD.mkv
 The Others 小岛惊魂 2001 7.7 神秘惊悚 SDHF720.mkv
 All About Lily Chou-Chou 关于莉莉周的一切 2001 7.6 日本剧情音乐 SDHF.mkv
@@ -2723,9 +2643,7 @@ Snitch 告密者 2013 6.8 剧情惊悚 SDHF.mkv
 The Counterfeiters 伪钞制造者 2007 7.7 德国剧情战争 miniSD.mkv
 The Ten Commandments 十诫 1956 7.8 剧情 SDHF.mkv
 Rio Bravo 赤胆屠龙 1959 8.0 剧情爱情西部 miniSD.mkv
-The Island 圣人岛 2005 7.9 俄罗斯剧情 MiniSD.mkv
 Another Year 另一年 2010 7.9 英国剧情 MiniSD.mkv
-The Chronicles of Narnia 1 纳尼亚传奇1 2005 6.9 冒险奇幻 SDHF720 cn.mkv
 Che 1 切·格瓦拉1游击队 2008 7.4 传记剧情 720p.mkv
 A Man Called Ove 一个叫欧维的男人决定去死 2015 d8.8 瑞典剧情 x265.mkv
 All Things Fair 教室别恋 1995 7.0 瑞典剧情 HALFCD.mkv
@@ -2771,7 +2689,6 @@ The World Is Big and Salvation Lurks around the Corner 在世界转角遇见爱 
 The Cabin In The Woods 林中小屋 2011 7.7 恐怖科幻 SDHFx265.mkv
 Straw Dogs 稻草狗 1971 7.6 剧情惊悚 MiniSD.mkv
 Yankee Doodle Dandy 胜利之歌 1942 7.8 剧情音乐 MiniSD.mkv
-The Cabin In The Woods 林中小屋 2011 7.7 恐怖惊悚 SDHF720.mkv
 The Lost Prince 2 失落的王子2 2003 8.0 传记剧情 MiniSD.mkv
 Vantage Point 刺杀据点 2008 6.6 剧情惊悚 SDHF cn.mkv
 Catch Me If You Can 猫鼠游戏 2002 8.1 犯罪惊悚.mp4
@@ -2783,7 +2700,6 @@ Summer Hours 夏日时光 2008 7.1 法国剧情 MiniSD.mkv
 Memento 记忆碎片 2000 8.5 惊悚 x265.mkv
 Labor Day 劳动节 2013 6.9 剧情 SDHF.mkv
 Nebraska 内布拉斯加 2013 7.9 剧情 SDHF.mkv
-The Martian 火星救援加长版 2015 8.1 科幻冒险 SDHF.mkv
 The Ox-Bow Incident 龙城风云 1942 8.2 剧情 MiniSD.mkv
 A Nightmare on Elm Street 猛鬼街 1984 7.3 奇幻惊悚 miniSD.mkv
 Unbreakable 不死劫 2000 7.3 奇幻神秘 SDHF cn.mkv
@@ -2791,7 +2707,6 @@ Unbreakable 不死劫 2000 7.3 奇幻神秘 SDHF cn.mkv
 The Best Of Youth 2 灿烂人生2 2003 8.3 意大利剧情爱情 MiniSD.mkv
 The Book Thief 偷书贼 2013 7.7 剧情战争 SDHF.mkv
 The Diary Of Anne Frank 安妮日记 1959 7.6 传记战争 MiniSD.mkv
-Prometheus 普罗米修斯 2012 7.5 法国科幻 SDHF720.mkv
 Philomena 菲洛梅娜 2013 7.7 剧情 SDHF.mkv
 2001 A Space Odyssey 2001太空漫游 1968 8.4 冒险科幻 HDR.mkv
 Ready Player One 头号玩家 2018 7.7 SDHFx265.mkv
@@ -2825,11 +2740,9 @@ Ain't Them Bodies Saints 他们非圣人 2013 7.1 剧情 SDHF.mkv
 The Good Shepherd 特务风云 2006 6.8 剧情惊悚 SDHF cn.mkv
 Y Tu Mama Tambien 衰仔失乐园 2001 7.8 西班牙剧情 MiniSD.mkv
 Z 焦点新闻 1969 8.1 法国惊悚 MiniSD.mkv
-Avatar 阿凡达 2009 8.0 科幻动作 720p.mkv
 The Son's Room 儿子的房间 2001 7.4 意大利剧情 HALFCD.mkv
 Seabiscuit 奔腾年代 2003 7.4 剧情运动 MiniSD.mkv
 The Devil's Advocate 魔鬼代言人 1997 7.5 悬疑惊悚 SDHF.mkv
-The Kingdom 改朝换代 2007 7.1 犯罪剧情 720p.mkv
 The Departed 无间行者 2006 8.5 犯罪惊悚 SDHF.mkv
 Sophie Scholl 索菲·绍尔.希望与反抗 2005 7.9 德国剧情战争 MiniSD.mkv
 We Need to Talk About Kevin 我们需要谈谈凯文 2011 7.8 剧情惊悚 SDHF720.mkv
@@ -2837,13 +2750,11 @@ Selma 塞尔玛游行 2014 7.5 传记历史 SDHF.mkv
 The Chronicles of Narnia 2 纳尼亚传奇2-凯斯宾王子 2008 7.2 奇幻家庭冒险 miniSD.mkv
 Tokyo Godfathers 东京教父 2003 7.7 日本冒险动画 SDHF.mkv
 Charlie Wilson's War 查理·威尔逊的战争 2007 7.3 传记剧情 720p.mkv
-Begin Again 歌曲改变人生 2013 7.5 剧情音乐 MiniSD.mkv
 Some Like It Hot 热情似火 1959 8.4 喜剧 MiniSD cn.mkv
 A Star Is Born 一个明星的诞生 2018 8.1 剧情音乐 HDR.mkv
 Sin Nombre 无名 2009 7.7 冒险犯罪 720p.mkv
 Angels & Demons 天使与魔鬼 2009 6.6 神秘惊悚 SDHF720.mkv
 Rosetta 美丽罗塞塔 1999 7.2 剧情 MiniSD.mkv
-8 Women 八美图 2002 7.0 法国悬疑歌舞 MiniSD.mkv
 Stalingrad 决战斯大林格勒 1993 7.5 德国剧情战争 SDHF.mkv
 Quiz Show 幕后谎言 1994 7.4 剧情历史 720p.mkv
 Remember The Titans 冲锋陷阵 2000 7.5 体育剧情 MiniSD.mkv
@@ -2856,8 +2767,6 @@ American Beauty 美国丽人 1999 8.6 剧情 720p.mkv
 Blue Is the Warmest Colour 阿黛尔的生活 2013 8.3 法国剧情 SDHF.mkv
 Young And Innocent 年轻姑娘 1937 7.0 犯罪惊悚 SDHF.mkv
 Arbitrage 套利交易 2012 6.7 剧情惊悚 SDHF.mkv
-True Romance 致命浪漫 1993 7.9 犯罪爱情 720p.mkv
-Get Out 逃出绝命镇 2017 8.0 悬疑恐怖 MiniSD.mkv
 The Merchant of Venice 威尼斯商人 2004 7.3 剧情喜剧 miniSD.mkv
 All or Nothing 折翼天使 2002 7.5 英国剧情喜剧 MiniSD.mkv
 The Aviator 飞行家 2004 7.5 传记剧情 SDHF720 cn.mkv
@@ -2879,7 +2788,6 @@ The Last King of Scotland 末代独裁 2006 7.8 传记剧情 MiniSD.mkv
 Law Abiding Citizen 守法公民 2009 7.4 犯罪惊悚 SDHF.mkv
 The Name of the Rose 玫瑰之名 1986 7.8 法国剧情 MiniSD.mkv
 The Sessions 亲密治疗 2012 7.3 剧情爱情 SDHF.mkv
-The Kid With A Bike 单车少年 2011 7.4 法国剧情 MiniSD.mkv
 Ashes And Diamonds 灰烬与钻石 1958 7.9 波兰剧情战争 MiniSD.mkv
 This Is England 这就是英格兰 2006 7.9 犯罪剧情 720p.mkv
 The Virgin Spring 处女泉 1960 8.4 瑞典犯罪剧情 MiniSD.mkv
@@ -2887,7 +2795,6 @@ A Streetcar Named Desire 欲望号街车 1951 8.1 剧情 MiniSD.mkv
 The Machinist 机械师 2004 7.8 西班牙惊悚剧情 miniSD.mkv
 The Whistleblower 告密者 2010 7.2 剧情 MiniSD.mkv
 The Next Three Days 三日危情 2010 7.3 犯罪剧情 SDHF.mkv
-The Big Blue 碧海蓝天 1988 7.4 剧情爱情 MiniSD.mkv
 When We Leave 当我们离开 2010 7.9 德国剧情 MiniSD.mkv
 Babel 通天塔 2006 7.5 剧情 SDHF.mkv
 Girl with a Pearl Earring 戴珍珠耳环的少女 2003 7.1 剧情 miniSD.mkv
@@ -2900,11 +2807,9 @@ The Tree of Life 生命之树 2011 7.2 剧情 SDHF720.mkv
 The Talented Mr Ripley 天才雷普利 1999 7.3 惊悚犯罪 SDHF 1295045.mkv
 War and Peace 战争与和平 1956 6.7 剧情历史 SDHF1080.mkv
 The Elephant Man 象人 1980 8.3 传记历史 SDHF.mkv
-The Sting 骗中骗 1973 8.4 喜剧犯罪 MiniSD.mkv
 The Descent 1 黑暗侵袭1 2005 7.4 冒险恐怖 720p.mkv
 True Grit 大地惊雷 2010 8.2 冒险西部 MiniSD.mkv
 Traitor 叛国者 2008 7.1 犯罪剧情 720p.mkv
-The Insider 局内人 1999 8.0 传记剧情 720p.mkv
 Wild at Heart 我心狂野 1990 7.2 犯罪爱情.mkv
 Tsotsi 黑帮暴徒 2005 7.4 犯罪剧情 MiniSD.mkv
 Children Of Heaven 天堂的孩子 1997 8.3 伊朗剧情.mp4
@@ -2912,7 +2817,6 @@ And Then There Were None 终局 1945 7.7 犯罪神秘 SDHF.mkv
 Monster's Ball 死囚之舞 2001 7.2 剧情爱情 720p.mkv
 Touch of Evil 历劫佳人 1958 8.4 犯罪惊悚 miniSD.mkv
 Phantom Thread 魅影缝匠 2017 7.6 剧情浪漫 x265.mkv
-Interstellar 星际穿越 2014 8.8 科幻冒险 SDHF1080.mkv
 The City of Lost Children 童梦失魂夜 1995 7.8 冒险荒诞 MiniSD.mkv
 It 小丑回魂 2017 7.5 剧情恐怖 SDHF.mkv
 The Seventh Seal 第七封印 1957 8.4 剧情幻想 720p.mkv
@@ -2963,7 +2867,6 @@ The Best Offer 最佳出价 2013 7.8 犯罪剧情 SDHF.mkv
 My Sister's Keeper 姐姐的守护者 2009 7.3 剧情 SDHF.mkv
 The Samaritan 撒玛利亚人 2012 7.4 惊悚 SDHF720.mkv
 The Deer Hunter 猎鹿人 1978 8.2 剧情战争 SDHF cn.mkv
-The Salesman 推销员 2016 8.2 伊朗剧情 MiniSD.mkv
 A Serious Man 严肃的男人 2009 7.3 剧情 720p.mkv
 Front of the Class 叫我第一名 2008 8.2 剧情.mkv
 Tokyo Sonata 东京奏鸣曲 2008 7.5 日本剧情 SDHF.mkv
@@ -2976,7 +2879,6 @@ Swades 吾土吾民 2004 8.3 印度剧情 MiniSD.mkv
 Central Station 中央车站 1998 8.0 巴西剧情 MiniSD.mkv
 The Salesman 推销员 2016 7.8 伊朗剧情悬疑 SDHF.mkv
 The Phantom of the Opera 歌剧魅影 2004 7.3 miniSD.mkv
-The Hunt For Red October 猎杀红色十月 1990 7.6 动作冒险 iNT.mkv
 The Constant Gardener 不朽的园丁 2005 7.7 惊悚剧情 miniSD.mkv
 Schindler's List 辛德勒的名单 1993 8.9 传记历史 SDHF.mkv
 The Magnificent Seven 七侠荡寇志 1960 7.8 西部冒险 MiniSD.mkv
@@ -2987,7 +2889,6 @@ That Obscure Object of Desire 朦胧的欲望 1977 7.9 法国剧情 SDHF.mkv
 Legends of the Fall 燃情岁月 1994 7.5 爱情西部 SDHFx265.mkv
 Ray 灵魂歌王 2004 7.8 传记剧情 720p.mkv
 Ugetsu 雨月物语 1953 8.1 日本幻想剧情 MiniSD.mkv
-Unknown 不明身份 2011 7.1 剧情惊悚 MiniSD.mkv
 The Devil's Backbone 鬼童院 2001 7.5  西班牙奇幻恐怖 SDHF.mkv
 Reign Over Me 从心开始 2007 7.8 剧情 miniSD.mkv
 The American 美国人 2010 6.6 惊悚犯罪 SDHF.mkv
@@ -2999,7 +2900,6 @@ The Secret Life of Words 言语的秘密生活 2005 7.6 西班牙剧情 MiniSD.m
 A Touch of Spice 香料共和国 2003 7.5 希腊剧情 MiniSD.mkv
 Recount 选票风波 2008 7.6 剧情历史 720p.mkv
 The Mist 迷雾 2007 7.3 科幻惊悚 SDHF720.mkv
-Peter Pan 彼得·潘 2003 7.1 冒险家庭 720p.mkv
 Viridiana 维莉蒂安娜 196 8.2 剧情 MiniSD.mkv
 New Moon 暮色2：新月 2009 4.6m7.8 剧情幻想 720p.mkv
 Amores Perros 爱情是狗娘 2000 8.1 墨西哥剧情 SDHF.mkv
@@ -3017,7 +2917,6 @@ The Bear 子熊故事 1988 冒险家庭 MiniSD.mkv
 The Insider 惊爆内幕 1999 7.9 传记惊悚 SDHF.mkv
 The Boys From Brazil 巴西的男孩 1978 7.1 惊悚剧情 MiniSD.mkv
 The Ice Storm 冰风暴 1997 7.5 剧情 480p.mkv
-The Reader 生死朗读 2008 7.7 剧情爱情 SDHF.mkv
 What Dreams May Come 美梦成真 1998 6.7 剧情奇幻 SDHF720.mkv
 The Killing Fields 战火屠城  1984 8.0 剧情历史 720p.mkv
 Tokyo 东京 2008 7.3 日本剧情 MiniSD.mkv
@@ -3071,7 +2970,6 @@ Braveheart 勇敢的心 1995 8.4 传记剧情 x265.mkv
 Secret 秘密 1999 6.6 日本剧情奇幻 SDHF.mkv
 Jackie 第一夫人 2016 7.0 传记剧情.mp4
 Silence  沉默 2016 7.5 冒险剧情.mp4
-The Visitor 不速之客 2007 8.0 剧情 halfCD.mkv
 The Sweet Hereafter 意外的春天 1997 7.7 剧情 SDHF.mkv
 10 Cloverfield Lane 科洛弗道10号 2016 7.4 恐怖惊悚 SDHF.mkv
 Persepolis 我在伊朗长大 2007 8.1 喜剧剧情 miniSD.mkv
@@ -3081,7 +2979,6 @@ Talk To Her 对她说 2002 8.0 西班牙剧情 HALFCD.mkv
 Philadelphia 费城 1993 7.6 剧情 MiniSD.mkv
 Wall Street Money Never Sleeps 华尔街：金钱永不眠 2010 6.9 剧情 MiniSD.mkv
 The Thing 怪形 1982 8.2 恐怖科幻 SDHF.mkv
-Arizona Dream 亚历桑那梦游 1993 7.3 剧情 MiniSD.mkv
 Inside Llewyn Davis 醉乡民谣 2013 7.7 剧情音乐 SDHF.mkv
 The Passion of Joan of Arc 圣女贞德蒙难记 1928 8.3 传记犯罪 MiniSD.mkv
 A Prophet 预言者 2009 8.1 犯罪剧情 MiniSD.mkv

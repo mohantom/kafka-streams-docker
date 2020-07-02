@@ -56,16 +56,16 @@ public class MovieScanService {
   private final RestTemplate restTemplate;
   private final String outputFolder;
 
-  public List<Movie> scanMovies(boolean append) {
+  public List<Movie> scanMovies() {
     List<String> movieLines = readFromFile("/movies.txt");
 
-    Set<String> moviesTitlesHavingImdbId = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME, append).stream()
+    Set<String> moviesTitlesHavingImdbId = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME).stream()
         .filter(this::hasImdbId)
         .map(Movie::getTitle)
         .collect(Collectors.toSet());
     log.info("Found {} movies already enriched.", moviesTitlesHavingImdbId.size());
 
-    Set<String> moviesTitlesUnfound = loadMoviesFromCsv(MOVIE_UNFOOUND_FILENAME, append).stream()
+    Set<String> moviesTitlesUnfound = loadMoviesFromCsv(MOVIE_UNFOOUND_FILENAME).stream()
         .map(Movie::getTitle)
         .collect(Collectors.toSet());
     log.info("There are {} movies unfound.", moviesTitlesUnfound.size());
@@ -85,17 +85,14 @@ public class MovieScanService {
 
     Pair<List<Movie>, List<Movie>> enrichedAndUnfoundMovies = enrichMovies(moviesTobeEnriched);
 
-    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), enrichedAndUnfoundMovies.getLeft(), append);
-    createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight(), append);
+    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), enrichedAndUnfoundMovies.getLeft());
+    createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight());
 
     log.info("Finished scan {} movies.", enrichedAndUnfoundMovies.getLeft().size());
     return enrichedAndUnfoundMovies.getLeft().stream().limit(10).collect(Collectors.toList());
   }
 
-  private List<Movie> loadMoviesFromCsv(String filename, boolean append) {
-    if (!append) {
-      return ImmutableList.of();  // re-scan movies, will overwrite csv file
-    }
+  private List<Movie> loadMoviesFromCsv(String filename) {
     String filepath = new File(outputFolder, filename).getAbsolutePath();
     return JacksonUtil.readCsvFile(filepath, Movie.class);
   }
@@ -199,6 +196,7 @@ public class MovieScanService {
         }
 
         Movie enrichedMovie = m.toBuilder()
+            .title(omdbMovie.getTitle())
             .runtime(runtime)
             .rating(rating)
             .genre(omdbMovie.getGenre())
@@ -214,7 +212,7 @@ public class MovieScanService {
         enrichedMovies.add(enrichedMovie);
 
       } catch (Exception e) {
-        log.error("Problem from OMDB api. Limit exceede? ", e); // Request limit reached!
+        log.error("Problem from OMDB api. Limit exceeded? ", e); // Request limit reached!
         tries++;
       }
     }
@@ -266,9 +264,9 @@ public class MovieScanService {
     }
   }
 
-  private void createCSVFile(File csvFile, List<Movie> movies, boolean append) {
-    try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(csvFile, append))) {
-      SequenceWriter writer = JacksonUtil.getCsvWriter(Movie.class, append).writeValues(fos);
+  private void createCSVFile(File csvFile, List<Movie> movies) {
+    try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(csvFile, true))) {
+      SequenceWriter writer = JacksonUtil.getCsvWriter(Movie.class, true).writeValues(fos);
       writer.writeAll(movies);
     } catch (IOException ie) {
       log.error("Failed to write movies to csv file");

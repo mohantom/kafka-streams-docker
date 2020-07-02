@@ -65,6 +65,19 @@ or `docer system prune --volumes`
 3. reload movie data to mongo and es7: http://localhost:8010/loader/movie/load
 
 
+check movie duplicates
+```shell script
+import pandas as pd
+
+movies = pd.read_csv("data/movies_enriched.csv")
+
+dups = movies[movies.duplicated(['title', 'year'], keep=False)]
+dups[['title', 'year', 'imdbid']].to_csv("data/movies_dups.csv", index=False)
+
+movies_unique = movies.drop_duplicates(subset=['title', 'year'], keep='first')
+movies_unique.to_csv("data/movies_unique.csv")
+```
+
 ## Mongo
 - [Introduction to Spring Data MongoDB](https://www.baeldung.com/spring-data-mongodb-tutorial)
 - [MongoTemplate aggregation](https://www.baeldung.com/spring-data-mongodb-projections-aggregations)

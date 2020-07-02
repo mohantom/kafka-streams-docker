@@ -52,8 +52,8 @@ public class MovieMongoController {
   }
 
   @DeleteMapping("/movie")
-  public Response deleteIndices() throws IOException {
-    boolean movieDropped = movieMongoService.dropCollection("movie");
-    return Response.ok().entity(ImmutableMap.of("movie", movieDropped)).build();
+  public String deleteIndices() throws IOException {
+    movieMongoService.dropCollection("movie");
+    return "Mongo collection movie is dropped.";
   }
 }

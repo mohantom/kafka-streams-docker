@@ -2,12 +2,10 @@ package com.tangspring.kafkastreams.movie;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-import com.google.common.collect.ImmutableMap;
 import com.tangspring.kafkastreams.shared.models.Movie;
 import java.io.IOException;
 import java.util.List;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
@@ -41,9 +39,9 @@ public class MovieEsRestController {
   }
 
   @DeleteMapping("/movie")
-  public Response deleteIndices() throws IOException {
-    boolean deleteMovies = movieEsService.deleteIndex("movies");
-    boolean deleteMoviesYear = movieEsService.deleteIndex("movies-year");
-    return Response.ok().entity(ImmutableMap.of("movies", deleteMovies, "movies-year", deleteMoviesYear)).build();
+  public String deleteIndices() throws IOException {
+    movieEsService.deleteIndex("movies");
+    movieEsService.deleteIndex("movies-year");
+    return "ES7 index movies and movies-year are deleted.";
   }
 }
