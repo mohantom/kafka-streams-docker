@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -25,7 +24,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -45,7 +43,6 @@ public class MovieScanService {
   private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey={apikey}&t={title}&y={year}";
   private static final String MOVIES_FILENAME = "movies.txt";
   private static final String MOVIE_ENRICHED_FILENAME = "movies_enriched.csv";
-  private static final String MOVIE_ENRICHED_FILENAME2 = "movies_enriched2.csv";
   private static final String MOVIE_UNFOOUND_FILENAME = "movies_unfound.csv";
 
   public static final List<String> MOVIE_FOLDERS = ImmutableList.of(
@@ -64,7 +61,8 @@ public class MovieScanService {
       "Ted 2",
       "Mesrine Part 2",
       "Ocean's 8",
-      "Fantastic 4"
+      "Fantastic 4",
+      "The 33"
   );
   public static final String[] EXTENSIONS = {"mkv", "mp4", "avi"};
 
@@ -72,65 +70,7 @@ public class MovieScanService {
   private final String outputFolder;
 
 
-  public List<Movie> scanMovies() {
-    List<String> movieLines = readFromFile();
-
-    List<Movie> enrichedMovies = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME);
-    Set<String> moviesTitlesHavingImdbId = enrichedMovies.stream()
-        .filter(this::hasImdbId)
-        .map(Movie::getTitle)
-        .collect(Collectors.toSet());
-    log.info("Found {} movies already enriched.", moviesTitlesHavingImdbId.size());
-
-    Set<String> moviesTitlesUnfound = loadMoviesFromCsv(MOVIE_UNFOOUND_FILENAME).stream()
-        .map(Movie::getTitle)
-        .collect(Collectors.toSet());
-    log.info("There are {} movies unfound.", moviesTitlesUnfound.size());
-
-    List<Movie> allMovies = movieLines.stream()
-        .map(this::extractMovie)
-        .filter(Objects::nonNull)
-        .collect(Collectors.toList());
-    log.info("Total {} movies.", allMovies.size());
-
-    Map<String, String> moviesFilepath = allMovies.stream()
-        .collect(Collectors.toMap(Movie::getTitle, Movie::getFileurl, (a, b) -> b));
-
-    List<Movie> enrichedMoviesWithFilepath = enrichedMovies.stream()
-        .map(m -> m.toBuilder().fileurl(moviesFilepath.get(m.getTitle())).build())
-        .collect(Collectors.toList());
-
-    List<Movie> moviesTobeEnriched = allMovies.stream()
-        .filter(m -> !moviesTitlesHavingImdbId.contains(m.getTitle()))  // already enriched
-        .filter(m -> !moviesTitlesUnfound.contains(m.getTitle()))       // already checked it does not exist on OMDB
-        .filter(m -> StringUtils.isNotBlank(m.getTitle()) && m.getYear() != null) // exclude cn movies (title is null) for now
-        .collect(Collectors.toList());
-    log.info("Found {} movies to be enriched.", moviesTobeEnriched.size());
-
-    Pair<List<Movie>, List<Movie>> enrichedAndUnfoundMovies = enrichMovies(moviesTobeEnriched);
-
-    List<Movie> allEnrichedMovies = Stream.concat(enrichedMoviesWithFilepath.stream(), enrichedAndUnfoundMovies.getLeft().stream())
-        .sorted(Comparator.comparing(Movie::getTitle))
-        .collect(Collectors.toList());
-
-    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME2), allEnrichedMovies);
-    createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight());
-
-    log.info("Finished scan {} movies.", enrichedAndUnfoundMovies.getLeft().size());
-    return enrichedAndUnfoundMovies.getLeft().stream().limit(10).collect(Collectors.toList());
-  }
-
-  private List<Movie> loadMoviesFromCsv(String filename) {
-    String filepath = new File(outputFolder, filename).getAbsolutePath();
-    return JacksonUtil.readCsvFile(filepath, Movie.class);
-  }
-
-  private boolean hasImdbId(Movie m) {
-    return StringUtils.isNotBlank(m.getImdbid());
-  }
-
   public String scanNasMovies() {
-
     List<String> movies = MOVIE_FOLDERS.stream()
         .map(folder -> new File(MOVIE_DRIVE, folder))
         .map(f -> FileUtils.listFiles(f, EXTENSIONS, false))
@@ -147,6 +87,68 @@ public class MovieScanService {
     }
 
     return "Finished collecting movie files from NAS";
+  }
+
+  public List<Movie> enrichMovies() {
+    List<String> movieLines = readFromFile();
+
+    Set<String> moviesTitlesHavingImdbId = getAlreadyEnrichedMovies();
+    Set<String> moviesTitlesUnfound = getUnfoundMovies();
+    List<Movie> allMovies = getAllMovies(movieLines);
+
+    List<Movie> moviesTobeEnriched = allMovies.stream()
+        .filter(m -> !moviesTitlesHavingImdbId.contains(m.getTitle()))  // already enriched
+        .filter(m -> !moviesTitlesUnfound.contains(m.getTitle()))       // already checked it does not exist on OMDB
+        .filter(m -> StringUtils.isNotBlank(m.getTitle()) && m.getYear() != null) // exclude cn movies (title is null) for now
+        .collect(Collectors.toList());
+    log.info("Found {} movies to be enriched.", moviesTobeEnriched.size());
+
+    Pair<List<Movie>, List<Movie>> enrichedAndUnfoundMovies = enrichMovies(moviesTobeEnriched);
+
+    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), enrichedAndUnfoundMovies.getLeft());
+    createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight());
+
+    log.info("Finished scanning {} movies.", enrichedAndUnfoundMovies.getLeft().size());
+    return enrichedAndUnfoundMovies.getLeft().stream().limit(10).collect(Collectors.toList());
+  }
+
+  private List<Movie> getAllMovies(List<String> movieLines) {
+    List<Movie> allMovies = movieLines.stream()
+        .map(this::extractMovie)
+        .filter(Objects::nonNull)
+        .collect(Collectors.toList());
+    log.info("Total {} movies.", allMovies.size());
+    return allMovies;
+  }
+
+  private Set<String> getUnfoundMovies() {
+    Set<String> moviesTitlesUnfound = loadMoviesFromCsv(MOVIE_UNFOOUND_FILENAME).stream()
+        .map(Movie::getTitle)
+        .collect(Collectors.toSet());
+    log.info("There are {} movies unfound.", moviesTitlesUnfound.size());
+    return moviesTitlesUnfound;
+  }
+
+  private Set<String> getAlreadyEnrichedMovies() {
+    Set<String> moviesTitlesHavingImdbId = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME).stream()
+        .filter(this::hasImdbId)
+        .map(Movie::getTitle)
+        .collect(Collectors.toSet());
+    log.info("Found {} movies already enriched.", moviesTitlesHavingImdbId.size());
+    return moviesTitlesHavingImdbId;
+  }
+
+  private List<Movie> loadMoviesFromCsv(String filename) {
+    File file = new File(outputFolder, filename);
+    if (!file.exists()) {
+      return ImmutableList.of();
+    }
+    String filepath = new File(outputFolder, filename).getAbsolutePath();
+    return JacksonUtil.readCsvFile(filepath, Movie.class);
+  }
+
+  private boolean hasImdbId(Movie m) {
+    return StringUtils.isNotBlank(m.getImdbid());
   }
 
   private List<String> readFromFile() {

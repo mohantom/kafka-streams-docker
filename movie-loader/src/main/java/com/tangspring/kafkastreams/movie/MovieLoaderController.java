@@ -25,13 +25,13 @@ public class MovieLoaderController {
   }
 
   @GetMapping("/movie/scan")
-  public List<Movie> scanMovies() {
-    return movieScanService.scanMovies();
-  }
-
-  @GetMapping("/movie/scannas")
   public String scanNasMovies() {
     return movieScanService.scanNasMovies();
+  }
+
+  @GetMapping("/movie/enrich")
+  public List<Movie> scanMovies() {
+    return movieScanService.enrichMovies();
   }
 
   @GetMapping("/movie/load")

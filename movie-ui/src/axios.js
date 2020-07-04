@@ -33,7 +33,7 @@ myAxios.interceptors.request.use(
 // use URI and URLSearchParams: https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
 const movieUrls = {
   // mongo app
-  popular: page => `movie/all?size=20&sortField=year&direction=DESC&page=${page}`,
+  popular: page => `movie/all?size=100&sortField=year&direction=DESC&page=${page}`,
   search: title => `movie/query?title=${title}`,
   toprated: page => `movie/all?size=250&sortField=rating&direction=DESC&page=${page}`,
   play: () => `movie/play`,

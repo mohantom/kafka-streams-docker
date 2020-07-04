@@ -112,5 +112,6 @@ localhost:9200/movies-year/_search
     - [ ] filters: genre, years, rating, director?
     - [ ] fix movie stats filter
 - deploy to aws
-- play from nas
+- avoid scanning all files
+
 
