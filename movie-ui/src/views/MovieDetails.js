@@ -11,12 +11,14 @@ import MovieDetailsTrailer from "../components/MovieDetailsTrailer";
 const MovieDetails = props => {
   const movieContext = useContext(MovieContext);
   const imdbid = props.match.params.imdbid;
+  const { fileurl } = props.location.state.mongoMovie;
 
   const {
     movieDetails,
     movieReviews,
     getMovieDetails,
-    getMovieReviews
+    getMovieReviews,
+    playMovie,
   } = movieContext;
 
   const { movie, videos, tags, extraInfo } = movieDetails;
@@ -83,6 +85,10 @@ const MovieDetails = props => {
                   {videos.map(video => (
                     <MovieDetailsTrailer key={video.id} video={video} />
                   ))}
+                </div>
+
+                <div>
+                  <button className="" onClick={() => playMovie(fileurl)}>Play</button>
                 </div>
               </div>
             </div>

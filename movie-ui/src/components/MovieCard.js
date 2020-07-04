@@ -13,8 +13,8 @@ const movieCard = React.memo(({ movie }) => {
   return (
     <Link to={{
       pathname: `/movie/${movie.imdbid}`,
-      movie: movie
-      }}>
+      state: { mongoMovie: movie }
+    }}>
       <div>
         <div className="card column">
           <div className="card-image">

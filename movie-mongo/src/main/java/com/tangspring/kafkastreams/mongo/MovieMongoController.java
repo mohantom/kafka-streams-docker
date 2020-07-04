@@ -2,18 +2,22 @@ package com.tangspring.kafkastreams.mongo;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-import com.google.common.collect.ImmutableMap;
 import com.tangspring.kafkastreams.mongo.MovieMongoService.CountByYear;
 import com.tangspring.kafkastreams.shared.models.Movie;
 import java.io.IOException;
 import java.util.List;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieMongoController {
 
   private final MovieMongoService movieMongoService;
+  private final MoviePlayService moviePlayService;
 
   @GetMapping("/movie/info")
   public String info() {
@@ -55,5 +60,19 @@ public class MovieMongoController {
   public String deleteIndices() throws IOException {
     movieMongoService.dropCollection("movie");
     return "Mongo collection movie is dropped.";
+  }
+
+  @CrossOrigin
+  @PostMapping("/movie/play")
+  public String playMovie(@RequestBody PlayMovieRequest request) throws Exception {
+    return moviePlayService.playMovie(request.getFileurl());
+  }
+
+  @Data
+  @Builder
+  @AllArgsConstructor
+  @NoArgsConstructor
+  private static class PlayMovieRequest {
+    private String fileurl;
   }
 }

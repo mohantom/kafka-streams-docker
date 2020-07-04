@@ -29,6 +29,11 @@ public class MovieLoaderController {
     return movieScanService.scanMovies();
   }
 
+  @GetMapping("/movie/scannas")
+  public String scanNasMovies() {
+    return movieScanService.scanNasMovies();
+  }
+
   @GetMapping("/movie/load")
   public String loadMovies() {
     movieLoaderService.loadMoviesToKafka();

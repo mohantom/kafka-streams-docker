@@ -1,5 +1,7 @@
 package com.tangspring.kafkastreams.movie;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.fasterxml.jackson.databind.SequenceWriter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -8,15 +10,13 @@ import com.tangspring.kafkastreams.shared.models.Movie;
 import com.tangspring.kafkastreams.shared.models.OmdbMovie;
 import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -25,8 +25,11 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.client.RestTemplate;
@@ -35,12 +38,23 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class MovieScanService {
 
+  private static final String MOVIE_DRIVE = "Y:\\";
   private static final Pattern PATTERN = Pattern.compile("(\\d{4})");
   private static final Pattern PATTERN_RATING = Pattern.compile("(\\d\\.\\d)");
   private static final String[] apikeys = {"80bb7f52", "f98d8087", "e76a5722", "c8b0a93e"};
   private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey={apikey}&t={title}&y={year}";
+  private static final String MOVIES_FILENAME = "movies.txt";
   private static final String MOVIE_ENRICHED_FILENAME = "movies_enriched.csv";
+  private static final String MOVIE_ENRICHED_FILENAME2 = "movies_enriched2.csv";
   private static final String MOVIE_UNFOOUND_FILENAME = "movies_unfound.csv";
+
+  public static final List<String> MOVIE_FOLDERS = ImmutableList.of(
+      "2020 New",
+      "Action 动作战争",
+      "Animation 动画家庭",
+      "Comedy 喜剧爱情",
+      "Drama 剧情惊悚"
+  );
 
   private static final Set<String> MOVIES_KEEP_NUMBER = ImmutableSet.of(
       "Deadpool 2",
@@ -52,14 +66,17 @@ public class MovieScanService {
       "Ocean's 8",
       "Fantastic 4"
   );
+  public static final String[] EXTENSIONS = {"mkv", "mp4", "avi"};
 
   private final RestTemplate restTemplate;
   private final String outputFolder;
 
-  public List<Movie> scanMovies() {
-    List<String> movieLines = readFromFile("/movies.txt");
 
-    Set<String> moviesTitlesHavingImdbId = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME).stream()
+  public List<Movie> scanMovies() {
+    List<String> movieLines = readFromFile();
+
+    List<Movie> enrichedMovies = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME);
+    Set<String> moviesTitlesHavingImdbId = enrichedMovies.stream()
         .filter(this::hasImdbId)
         .map(Movie::getTitle)
         .collect(Collectors.toSet());
@@ -76,6 +93,13 @@ public class MovieScanService {
         .collect(Collectors.toList());
     log.info("Total {} movies.", allMovies.size());
 
+    Map<String, String> moviesFilepath = allMovies.stream()
+        .collect(Collectors.toMap(Movie::getTitle, Movie::getFileurl, (a, b) -> b));
+
+    List<Movie> enrichedMoviesWithFilepath = enrichedMovies.stream()
+        .map(m -> m.toBuilder().fileurl(moviesFilepath.get(m.getTitle())).build())
+        .collect(Collectors.toList());
+
     List<Movie> moviesTobeEnriched = allMovies.stream()
         .filter(m -> !moviesTitlesHavingImdbId.contains(m.getTitle()))  // already enriched
         .filter(m -> !moviesTitlesUnfound.contains(m.getTitle()))       // already checked it does not exist on OMDB
@@ -85,7 +109,11 @@ public class MovieScanService {
 
     Pair<List<Movie>, List<Movie>> enrichedAndUnfoundMovies = enrichMovies(moviesTobeEnriched);
 
-    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), enrichedAndUnfoundMovies.getLeft());
+    List<Movie> allEnrichedMovies = Stream.concat(enrichedMoviesWithFilepath.stream(), enrichedAndUnfoundMovies.getLeft().stream())
+        .sorted(Comparator.comparing(Movie::getTitle))
+        .collect(Collectors.toList());
+
+    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME2), allEnrichedMovies);
     createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight());
 
     log.info("Finished scan {} movies.", enrichedAndUnfoundMovies.getLeft().size());
@@ -101,35 +129,39 @@ public class MovieScanService {
     return StringUtils.isNotBlank(m.getImdbid());
   }
 
-  private List<String> scanFolder(String folderpath) {
+  public String scanNasMovies() {
+
+    List<String> movies = MOVIE_FOLDERS.stream()
+        .map(folder -> new File(MOVIE_DRIVE, folder))
+        .map(f -> FileUtils.listFiles(f, EXTENSIONS, false))
+        .flatMap(Collection::stream)
+        .map(File::getAbsolutePath)
+        .collect(Collectors.toList());
+
+    File moviesFile = new File(outputFolder, MOVIES_FILENAME);
+
     try {
-      return Files.walk(Paths.get(folderpath))
-          .filter(Files::isRegularFile)
-          .map(p -> p.toFile().getName())
-          .filter(n -> StringUtils.endsWithAny(".mkv", ".mp4", ".avi"))
-          .collect(Collectors.toList());
+      FileUtils.writeLines(moviesFile, movies);
     } catch (IOException ie) {
-      log.error("Failed to scan folder.", ie);
-      return ImmutableList.of();
+      log.error("Failed to write to file", ie);
     }
+
+    return "Finished collecting movie files from NAS";
   }
 
-  private List<String> readFromFile(String filepath) {
-    List<String> result = new ArrayList<>();
-    // had to use for docker: getResourceAsStream()
-    try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filepath)))) {
-      String line;
-      while ((line = bufferedReader.readLine()) != null) {
-        result.add(line);
-      }
-      return result;
+  private List<String> readFromFile() {
+    File moviesFile = new File(outputFolder, MOVIES_FILENAME);
+
+    try {
+      return FileUtils.readLines(moviesFile, UTF_8);
     } catch (Exception e) {
-      log.error("Failed to read file: {}", filepath);
+      log.error("Failed to read file.");
       throw new RuntimeException("Failed to read movie file.");
     }
   }
 
-  private Movie extractMovie(String filename) {
+  private Movie extractMovie(String filepath) {
+    String filename = FilenameUtils.getName(filepath);
     String year = extractMovieYear(filename);
 
     String title = StringUtils.trim(StringUtils.substringBeforeLast(filename, year));
@@ -162,6 +194,7 @@ public class MovieScanService {
         .genre(genre)
         .year(Optional.ofNullable(year).map(Integer::valueOf).orElse(null))
         .rating(Optional.ofNullable(rating).map(Float::valueOf).orElse(null))
+        .fileurl(filepath)
         .build();
   }
 

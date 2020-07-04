@@ -3,6 +3,7 @@ import _ from "lodash";
 import axios, { mongoAxios, movieUrls } from "../../axios";
 import { MovieContext } from "../context";
 import MovieReducer from "./movieReducer";
+import withErrorBoundary from "../../hocs/withErrorBoundary"
 import {
   GET_MOVIES,
   SET_MOVIES,
@@ -25,6 +26,7 @@ const MovieState = props => {
     movieReviews: []
   };
 
+  // or [movieStates, setMovieState] = useState(initialState);
   const [state, dispatch] = useReducer(MovieReducer, initialState);
 
   const getMovies = async page => {
@@ -120,6 +122,10 @@ const MovieState = props => {
     return response.data;
   };
 
+  const playMovie = async fileurl => {
+    await mongoAxios.post(movieUrls.play(), {fileurl: fileurl});
+  }
+
   return (
     <MovieContext.Provider
       value={{
@@ -132,7 +138,8 @@ const MovieState = props => {
         filterMovies,
         getMovieDetails,
         getMovieReviews,
-        getMoviesTopRated
+        getMoviesTopRated,
+        playMovie
       }}
     >
       {props.children}
@@ -140,4 +147,4 @@ const MovieState = props => {
   );
 };
 
-export default MovieState;
+export default withErrorBoundary(MovieState);

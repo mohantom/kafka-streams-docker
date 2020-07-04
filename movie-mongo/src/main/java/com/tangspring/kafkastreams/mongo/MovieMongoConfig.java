@@ -50,6 +50,11 @@ public class MovieMongoConfig {
     return new MovieMongoService(kafkaConsumer, mongoTemplate);
   }
 
+  @Bean
+  public MoviePlayService moviePlayService() {
+    return new MoviePlayService();
+  }
+
   private Map<String, Object> createKafkaProps(String bootstrapServers, String groupId,
       String maxPollRecords, Class valueDeserializer) {
     Map<String, Object> props = new HashMap<>();
