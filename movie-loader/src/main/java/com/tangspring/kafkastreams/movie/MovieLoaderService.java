@@ -15,7 +15,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 public class MovieLoaderService {
 
   private static final String MOVIE_TOPIC = "movies";
-  private static final String MOVIE_ENRICHED_FILENAME = "movies_enriched.csv";
+  private static final String MOVIES_ENRICHED_FILENAME = "movies.csv";
 
   private KafkaProducer<String, String> kafkaProducer;
   private final String outputFolder;
@@ -24,7 +24,7 @@ public class MovieLoaderService {
     log.info("Start sending messages.");
 
     try {
-      String filepath = new File(outputFolder, MOVIE_ENRICHED_FILENAME).getAbsolutePath();
+      String filepath = new File(outputFolder, MOVIES_ENRICHED_FILENAME).getAbsolutePath();
       List<Movie> movies = JacksonUtil.readCsvFile(filepath, Movie.class);
 
       movies.forEach(this::publishToKafka);

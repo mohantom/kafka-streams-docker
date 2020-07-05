@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Movie {
   private String movieid;
   private String title;
+  private String nastitle;  // title on NAS drive
   private String cntitle;
   private Integer year;
   private Float rating;

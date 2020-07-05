@@ -30,8 +30,8 @@ public class MovieLoaderController {
   }
 
   @GetMapping("/movie/enrich")
-  public List<Movie> scanMovies() {
-    return movieScanService.enrichMovies();
+  public List<Movie> enrichAllMovies() {
+    return movieScanService.enrichAllMovies();
   }
 
   @GetMapping("/movie/load")

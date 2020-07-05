@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -29,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
@@ -42,15 +42,16 @@ public class MovieScanService {
   private static final String[] apikeys = {"80bb7f52", "f98d8087", "e76a5722", "c8b0a93e"};
   private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey={apikey}&t={title}&y={year}";
   private static final String MOVIES_FILENAME = "movies.txt";
-  private static final String MOVIE_ENRICHED_FILENAME = "movies_enriched.csv";
-  private static final String MOVIE_UNFOOUND_FILENAME = "movies_unfound.csv";
+  private static final String MOVIE_OMDB_FILENAME = "movies_omdb.csv"; // title is the same as in movies.txt, not from omdb
+  private static final String MOVIE_ENRICHED_FILENAME = "movies.csv";
 
   public static final List<String> MOVIE_FOLDERS = ImmutableList.of(
       "2020 New",
       "Action 动作战争",
       "Animation 动画家庭",
       "Comedy 喜剧爱情",
-      "Drama 剧情惊悚"
+      "Drama 剧情惊悚",
+      "Animation 动画家庭\\宫崎骏"
   );
 
   private static final Set<String> MOVIES_KEEP_NUMBER = ImmutableSet.of(
@@ -89,27 +90,35 @@ public class MovieScanService {
     return "Finished collecting movie files from NAS";
   }
 
-  public List<Movie> enrichMovies() {
+  public List<Movie> enrichAllMovies() {
     List<String> movieLines = readFromFile();
 
-    Set<String> moviesTitlesHavingImdbId = getAlreadyEnrichedMovies();
-    Set<String> moviesTitlesUnfound = getUnfoundMovies();
-    List<Movie> allMovies = getAllMovies(movieLines);
 
-    List<Movie> moviesTobeEnriched = allMovies.stream()
-        .filter(m -> !moviesTitlesHavingImdbId.contains(m.getTitle()))  // already enriched
-        .filter(m -> !moviesTitlesUnfound.contains(m.getTitle()))       // already checked it does not exist on OMDB
-        .filter(m -> StringUtils.isNotBlank(m.getTitle()) && m.getYear() != null) // exclude cn movies (title is null) for now
+    Map<String, Movie> allMoviesByKey = getAllMovies(movieLines).stream()
+        .filter(m -> StringUtils.isNotBlank(m.getNastitle()) && m.getYear() != null) // exclude cn movies (title is null) for now
+        .collect(Collectors.toMap(this::getMovieKey, m -> m, (a, b) -> a));
+
+    Map<String, Movie> moviesImdbId = getOmdbMovies(); // nastitle + year
+
+    List<Movie> moviesTobeEnriched = allMoviesByKey.entrySet().stream()
+        .filter(e -> !moviesImdbId.containsKey(e.getKey()))  // skip already enriched
+        .map(Entry::getValue)
         .collect(Collectors.toList());
     log.info("Found {} movies to be enriched.", moviesTobeEnriched.size());
 
-    Pair<List<Movie>, List<Movie>> enrichedAndUnfoundMovies = enrichMovies(moviesTobeEnriched);
+    List<Movie> newEnrichedMovies = enrichMovies(moviesTobeEnriched);
+    log.info("Finished enriching {} new movies.", newEnrichedMovies.size());
 
-    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), enrichedAndUnfoundMovies.getLeft());
-    createCSVFile(new File(outputFolder, MOVIE_UNFOOUND_FILENAME), enrichedAndUnfoundMovies.getRight());
+    // save new movies to omdb file
+    createCSVFile(new File(outputFolder, MOVIE_OMDB_FILENAME), newEnrichedMovies, true);
 
-    log.info("Finished scanning {} movies.", enrichedAndUnfoundMovies.getLeft().size());
-    return enrichedAndUnfoundMovies.getLeft().stream().limit(10).collect(Collectors.toList());
+    List<Movie> updatedAllMovies = loadMoviesFromCsv(MOVIE_OMDB_FILENAME).stream()
+        .map(m -> m.toBuilder().fileurl(allMoviesByKey.get(getMovieKey(m)).getFileurl()).build())
+        .collect(Collectors.toList());
+
+    createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), updatedAllMovies, false);
+
+    return updatedAllMovies.stream().limit(10).collect(Collectors.toList());
   }
 
   private List<Movie> getAllMovies(List<String> movieLines) {
@@ -121,21 +130,16 @@ public class MovieScanService {
     return allMovies;
   }
 
-  private Set<String> getUnfoundMovies() {
-    Set<String> moviesTitlesUnfound = loadMoviesFromCsv(MOVIE_UNFOOUND_FILENAME).stream()
-        .map(Movie::getTitle)
-        .collect(Collectors.toSet());
-    log.info("There are {} movies unfound.", moviesTitlesUnfound.size());
-    return moviesTitlesUnfound;
-  }
-
-  private Set<String> getAlreadyEnrichedMovies() {
-    Set<String> moviesTitlesHavingImdbId = loadMoviesFromCsv(MOVIE_ENRICHED_FILENAME).stream()
+  private Map<String, Movie> getOmdbMovies() {
+    Map<String, Movie> moviesTitlesHavingImdbId = loadMoviesFromCsv(MOVIE_OMDB_FILENAME).stream()
         .filter(this::hasImdbId)
-        .map(Movie::getTitle)
-        .collect(Collectors.toSet());
+        .collect(Collectors.toMap(this::getMovieKey, m -> m, (a, b) -> a));
     log.info("Found {} movies already enriched.", moviesTitlesHavingImdbId.size());
     return moviesTitlesHavingImdbId;
+  }
+
+  private String getMovieKey(Movie m) {
+    return m.getNastitle() + " " + m.getYear();
   }
 
   private List<Movie> loadMoviesFromCsv(String filename) {
@@ -191,7 +195,7 @@ public class MovieScanService {
     String genre = StringUtils.substringBefore(afterRating, " ");
 
     return Movie.builder()
-        .title(enTitle)
+        .nastitle(enTitle)
         .cntitle(cnTitle)
         .genre(genre)
         .year(Optional.ofNullable(year).map(Integer::valueOf).orElse(null))
@@ -211,9 +215,8 @@ public class MovieScanService {
     return year;
   }
 
-  private Pair<List<Movie>, List<Movie>> enrichMovies(List<Movie> movies) {
+  private List<Movie> enrichMovies(List<Movie> movies) {
     List<Movie> enrichedMovies = new ArrayList<>();
-    List<Movie> unfoundMovies = new ArrayList<>();
 
     int tries = 0;
 
@@ -226,12 +229,13 @@ public class MovieScanService {
         Float rating = getRating(m, omdbMovie);
 
         if (omdbMovie == null || omdbMovie.getTitle() == null || runtime == null || rating == null) {
-          unfoundMovies.add(m);
+          log.warn("Moive not found: {}, {}", m.getNastitle(), m.getYear());
           continue;
         }
 
         Movie enrichedMovie = m.toBuilder()
             .title(omdbMovie.getTitle())
+            .nastitle(m.getNastitle())
             .runtime(runtime)
             .rating(rating)
             .genre(omdbMovie.getGenre())
@@ -252,7 +256,7 @@ public class MovieScanService {
       }
     }
 
-    return Pair.of(enrichedMovies, unfoundMovies);
+    return enrichedMovies;
 
   }
 
@@ -272,7 +276,7 @@ public class MovieScanService {
   private Map<String, Object> getUriVars(Movie m, String apikey) {
     return ImmutableMap.of(
         "apikey", apikey,
-        "title", m.getTitle(),
+        "title", m.getNastitle(),
         "year", m.getYear()
     );
   }
@@ -299,9 +303,9 @@ public class MovieScanService {
     }
   }
 
-  private void createCSVFile(File csvFile, List<Movie> movies) {
-    try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(csvFile, true))) {
-      SequenceWriter writer = JacksonUtil.getCsvWriter(Movie.class, true).writeValues(fos);
+  private void createCSVFile(File csvFile, List<Movie> movies, boolean append) {
+    try (OutputStream fos = new BufferedOutputStream(new FileOutputStream(csvFile, append))) {
+      SequenceWriter writer = JacksonUtil.getCsvWriter(Movie.class, append).writeValues(fos);
       writer.writeAll(movies);
     } catch (IOException ie) {
       log.error("Failed to write movies to csv file");
