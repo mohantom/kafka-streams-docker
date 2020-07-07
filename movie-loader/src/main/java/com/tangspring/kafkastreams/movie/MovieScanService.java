@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -37,7 +38,6 @@ import org.springframework.web.client.RestTemplate;
 public class MovieScanService {
 
   private static final String MOVIE_DRIVE = "Y:\\";
-  private static final Pattern PATTERN = Pattern.compile("(\\d{4})");
   private static final Pattern PATTERN_RATING = Pattern.compile("(\\d\\.\\d)");
   private static final String[] apikeys = {"80bb7f52", "f98d8087", "e76a5722", "c8b0a93e"};
   private static final String omdbBaseUrl = "http://www.omdbapi.com/?apikey={apikey}&t={title}&y={year}";
@@ -65,6 +65,13 @@ public class MovieScanService {
       "Fantastic 4",
       "The 33"
   );
+
+  private static final Set<String> TODO = ImmutableSet.of(
+      "Eleven Fourteen", // 11:14
+      "Eight And A Half",  // 8 1/2
+      "Tom And Jerry"
+  );
+
   public static final String[] EXTENSIONS = {"mkv", "mp4", "avi"};
 
   private final RestTemplate restTemplate;
@@ -80,6 +87,7 @@ public class MovieScanService {
         .collect(Collectors.toList());
 
     File moviesFile = new File(outputFolder, MOVIES_FILENAME);
+    log.info("Found {} movies from NAS.", movies.size());
 
     try {
       FileUtils.writeLines(moviesFile, movies);
@@ -87,12 +95,11 @@ public class MovieScanService {
       log.error("Failed to write to file", ie);
     }
 
-    return "Finished collecting movie files from NAS";
+    return String.format("Finished collecting %s movie files from NAS", movies.size());
   }
 
   public List<Movie> enrichAllMovies() {
     List<String> movieLines = readFromFile();
-
 
     Map<String, Movie> allMoviesByKey = getAllMovies(movieLines).stream()
         .filter(m -> StringUtils.isNotBlank(m.getNastitle()) && m.getYear() != null) // exclude cn movies (title is null) for now
@@ -102,6 +109,7 @@ public class MovieScanService {
 
     List<Movie> moviesTobeEnriched = allMoviesByKey.entrySet().stream()
         .filter(e -> !moviesImdbId.containsKey(e.getKey()))  // skip already enriched
+        .filter(e -> !TODO.contains(e.getKey()))
         .map(Entry::getValue)
         .collect(Collectors.toList());
     log.info("Found {} movies to be enriched.", moviesTobeEnriched.size());
@@ -114,6 +122,7 @@ public class MovieScanService {
 
     List<Movie> updatedAllMovies = loadMoviesFromCsv(MOVIE_OMDB_FILENAME).stream()
         .map(m -> m.toBuilder().fileurl(allMoviesByKey.get(getMovieKey(m)).getFileurl()).build())
+        .sorted(Comparator.comparing(Movie::getTitle))
         .collect(Collectors.toList());
 
     createCSVFile(new File(outputFolder, MOVIE_ENRICHED_FILENAME), updatedAllMovies, false);

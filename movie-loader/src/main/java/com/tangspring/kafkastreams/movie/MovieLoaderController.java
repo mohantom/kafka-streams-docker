@@ -18,6 +18,7 @@ public class MovieLoaderController {
 
   private final MovieScanService movieScanService;
   private final MovieLoaderService movieLoaderService;
+  private final MovieRenameService movieRenameService;
 
   @GetMapping("/movie/info")
   public String info() {
@@ -38,5 +39,11 @@ public class MovieLoaderController {
   public String loadMovies() {
     movieLoaderService.loadMoviesToKafka();
     return "Loaded all movies to Kafka";
+  }
+
+  @GetMapping("/movie/rename")
+  public String renameMovies() {
+    movieRenameService.renameMovies();
+    return "Renamed all movies";
   }
 }

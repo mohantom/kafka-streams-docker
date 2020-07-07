@@ -49,6 +49,11 @@ public class MovieLoaderConfig {
     return new MovieScanService(restTemplate, outputFolder);
   }
 
+  @Bean
+  public MovieRenameService movieRenameService(RestTemplate restTemplate) {
+    return new MovieRenameService(restTemplate);
+  }
+
 
   private Properties getKafkaProperties() {
     Properties props = new Properties();
