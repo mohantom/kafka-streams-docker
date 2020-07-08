@@ -31,6 +31,9 @@ public class MovieMongoConfig {
   @Value("${spring.kafka.max-poll-records}")
   private String maxPollRecords;
 
+  @Value("${output.folder}")
+  private String outputFolder;
+
   @Bean
   @Primary
   public ObjectMapper objectMapper() {
@@ -47,7 +50,7 @@ public class MovieMongoConfig {
 
   @Bean
   public MovieMongoService movieMongoService(KafkaConsumer kafkaConsumer, MongoTemplate mongoTemplate) {
-    return new MovieMongoService(kafkaConsumer, mongoTemplate);
+    return new MovieMongoService(outputFolder, kafkaConsumer, mongoTemplate);
   }
 
   @Bean

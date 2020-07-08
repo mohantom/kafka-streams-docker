@@ -98,8 +98,8 @@ const MovieDetails = props => {
 
       <div className="container">
         <h1 className="title is-2">Reviews</h1>
-        {movieReviews.map(review => {
-          return <MovieDetailsReview review={review} />;
+        {movieReviews.map((review, index) => {
+          return <MovieDetailsReview review={review} key={index} />;
         })}
       </div>
     </div>

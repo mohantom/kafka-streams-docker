@@ -7,7 +7,7 @@ const MovieDetailsPoster = ({ posterPath, posterSize }) => {
   };
 
   return (
-    <div class="column">
+    <div className="column">
       <img src={basePosterUrl[posterSize] + posterPath} alt="poster" />
     </div>
   );

@@ -1,12 +1,16 @@
 package com.tangspring.kafkastreams.mongo;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
+import com.google.common.collect.ImmutableList;
 import com.tangspring.kafkastreams.shared.models.Movie;
 import com.tangspring.kafkastreams.shared.utils.JacksonUtil;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -19,6 +23,7 @@ import javax.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -42,6 +47,7 @@ public class MovieMongoService {
 
   private static final String MOVIES = "movies";
 
+  private final String outputFolder;
   private final KafkaConsumer<String, String> moviesConsumer;
   private final MongoTemplate mongoTemplate;
 
@@ -105,6 +111,27 @@ public class MovieMongoService {
     Aggregation aggregation = newAggregation(groupByYear, filterCount, sortByYear);
     AggregationResults<CountByYear> result = mongoTemplate.aggregate(aggregation, "movie", CountByYear.class);
     return result.getMappedResults();
+  }
+
+  public List<Movie> oscarBestPictures() {
+    List<String> oscar = getOscarTitles();
+
+    Query query = new Query();
+    query.addCriteria(Criteria.where("title").in(oscar))
+        .with(Sort.by(Direction.DESC, "year")); // case-insensitive
+    List<Movie> movies = mongoTemplate.find(query, Movie.class)
+        .stream().distinct().collect(Collectors.toList());
+    return movies;
+  }
+
+  private List<String> getOscarTitles() {
+    try {
+      File oscar = new File(outputFolder, "oscar.txt");
+      return FileUtils.readLines(oscar, UTF_8);
+    } catch (IOException ie) {
+      log.error("Failed to read oscar file", ie);
+      return ImmutableList.of();
+    }
   }
 
   public boolean dropCollection(String name) {

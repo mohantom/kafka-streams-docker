@@ -122,8 +122,12 @@ const MovieState = props => {
     return response.data;
   };
 
+  const getOscar = () => {
+    return mongoAxios.get(movieUrls.oscar());
+  };
+
   const playMovie = async fileurl => {
-    await mongoAxios.post(movieUrls.play(), {fileurl: fileurl});
+    await mongoAxios.post(movieUrls.play(), { fileurl: fileurl });
   }
 
   return (
@@ -139,6 +143,7 @@ const MovieState = props => {
         getMovieDetails,
         getMovieReviews,
         getMoviesTopRated,
+        getOscar,
         playMovie
       }}
     >

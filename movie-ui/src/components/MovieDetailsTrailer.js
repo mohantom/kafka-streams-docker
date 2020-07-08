@@ -8,7 +8,7 @@ const MovieDetailsTrailer = ({ video }) => {
         width="100%"
         height="auto"
         src={baseYoutubeUrl + video.key}
-        allowfullscreen
+        allowFullScreen
         title={video.id}
       ></iframe>
     </div>

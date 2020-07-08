@@ -68,6 +68,11 @@ public class MovieMongoController {
     return moviePlayService.playMovie(request.getFileurl());
   }
 
+  @GetMapping("/movie/oscar")
+  public List<Movie> oscarBestPictures() {
+    return movieMongoService.oscarBestPictures();
+  }
+
   @Data
   @Builder
   @AllArgsConstructor

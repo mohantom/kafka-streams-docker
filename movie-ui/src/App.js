@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "bulma/css/bulma.css";
 import "./App.css";
 import MovieHome from "./views/MovieHome";
+import MovieOscar from "./views/MovieOscar";
 import MovieDetails from "./views/MovieDetails";
 import About from "./views/About";
 import Login from "./views/Login";
@@ -13,7 +14,8 @@ import PrivateRoute from "./shared/PrivateRoute";
 function App(props) {
   const routes = (
     <Switch>
-      <PrivateRoute exact path="/home" component={MovieHome} />
+      <PrivateRoute exact path="/" component={MovieHome} />
+      <PrivateRoute exact path="/oscar" component={MovieOscar} />
       {/* <Route path="/home" exact component={MovieHome} /> */}
       <PrivateRoute path="/movie/:imdbid" exact component={MovieDetails} />
       <PrivateRoute path="/moviestats" exact component={MovieStats} />
