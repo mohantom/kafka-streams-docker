@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 import "./App.css";
 import MovieHome from "./views/MovieHome";
 import MovieOscar from "./views/MovieOscar";
+import MovieImdb from "./views/MovieImdb";
 import MovieDetails from "./views/MovieDetails";
 import About from "./views/About";
 import Login from "./views/Login";
@@ -16,6 +17,7 @@ function App(props) {
     <Switch>
       <PrivateRoute exact path="/" component={MovieHome} />
       <PrivateRoute exact path="/oscar" component={MovieOscar} />
+      <PrivateRoute exact path="/imdb" component={MovieImdb} />
       {/* <Route path="/home" exact component={MovieHome} /> */}
       <PrivateRoute path="/movie/:imdbid" exact component={MovieDetails} />
       <PrivateRoute path="/moviestats" exact component={MovieStats} />

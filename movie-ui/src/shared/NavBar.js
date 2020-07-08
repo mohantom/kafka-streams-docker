@@ -37,6 +37,9 @@ const NavBar = (props) => {
             </Link>
             <Link className="navbar-item" to="/oscar">
               Oscar
+            </Link>            
+            <Link className="navbar-item" to="/imdb">
+              IMDB TOP250
             </Link>
             <Link className="navbar-item" to="/moviestats">
               Stats

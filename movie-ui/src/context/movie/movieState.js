@@ -123,7 +123,11 @@ const MovieState = props => {
   };
 
   const getOscar = () => {
-    return mongoAxios.get(movieUrls.oscar());
+    return mongoAxios.get(movieUrls.best("oscar"));
+  };
+
+  const getImdbTop250 = () => {
+    return mongoAxios.get(movieUrls.best("imdb"));
   };
 
   const playMovie = async fileurl => {
@@ -144,6 +148,7 @@ const MovieState = props => {
         getMovieReviews,
         getMoviesTopRated,
         getOscar,
+        getImdbTop250,
         playMovie
       }}
     >

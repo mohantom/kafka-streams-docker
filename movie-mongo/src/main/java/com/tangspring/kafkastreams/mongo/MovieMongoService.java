@@ -14,10 +14,13 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
 import javax.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
@@ -113,21 +116,29 @@ public class MovieMongoService {
     return result.getMappedResults();
   }
 
-  public List<Movie> oscarBestPictures() {
-    List<String> oscar = getOscarTitles();
+  public List<Movie> getBestMovies(String type) {
+    List<String> bestMovies = getBestMovieNames(type);
 
     Query query = new Query();
-    query.addCriteria(Criteria.where("title").in(oscar))
+    query.addCriteria(Criteria.where("title").in(bestMovies))
         .with(Sort.by(Direction.DESC, "year")); // case-insensitive
-    List<Movie> movies = mongoTemplate.find(query, Movie.class)
-        .stream().distinct().collect(Collectors.toList());
+    List<Movie> movies = mongoTemplate.find(query, Movie.class);
+
+    if ("IMDB".equals(type)) {
+      Map<String, Integer> nameByIndex = IntStream.range(0, bestMovies.size()).boxed()
+          .collect(Collectors.toMap(bestMovies::get, i -> i));
+      return movies.stream()
+          .sorted(Comparator.comparingInt(a -> nameByIndex.get(a.getTitle())))
+          .collect(Collectors.toList());
+    }
+
     return movies;
   }
 
-  private List<String> getOscarTitles() {
+  private List<String> getBestMovieNames(String type) {
     try {
-      File oscar = new File(outputFolder, "oscar.txt");
-      return FileUtils.readLines(oscar, UTF_8);
+      File bestFile = new File(outputFolder, getBestMoviesFilename(type));
+      return FileUtils.readLines(bestFile, UTF_8);
     } catch (IOException ie) {
       log.error("Failed to read oscar file", ie);
       return ImmutableList.of();
@@ -145,5 +156,16 @@ public class MovieMongoService {
     private String year;
     private Integer count;
     private Float boxoffice;
+  }
+
+  private String getBestMoviesFilename(String type) {
+    switch(type) {
+      case "OSCAR":
+        return "oscar.txt";
+      case "IMDB":
+        return "imdb_top250.txt";
+      default:
+        throw new RuntimeException("Not supported yet");
+    }
   }
 }

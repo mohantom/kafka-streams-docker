@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -68,9 +69,9 @@ public class MovieMongoController {
     return moviePlayService.playMovie(request.getFileurl());
   }
 
-  @GetMapping("/movie/oscar")
-  public List<Movie> oscarBestPictures() {
-    return movieMongoService.oscarBestPictures();
+  @GetMapping("/movie/best")
+  public List<Movie> oscarBestPictures(@RequestParam String type) {
+    return movieMongoService.getBestMovies(StringUtils.upperCase(type));
   }
 
   @Data
