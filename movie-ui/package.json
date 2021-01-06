@@ -7,7 +7,7 @@
     "@ag-grid-community/react": "^22.1.2",
     "ag-grid-community": "^21.2.2",
     "ag-grid-react": "^21.2.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bulma": "^0.8.2",
     "core-js": "^3.6.5",
     "firebase": "^7.15.4",
